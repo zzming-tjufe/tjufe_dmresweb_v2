@@ -1,3 +1,9 @@
+---
+title: "Dify 新手入门指南（面向大一新生）"
+description: "Dify 新手入门指南（面向大一新生） page"
+sidebar_position: 2
+---
+
 # Dify 新手入门指南（面向大一新生）
 
 > 本指南旨在帮助刚接触人工智能与低代码开发的大一新生快速上手 **Dify** —— 一个开源的 LLM 应用开发平台。你将学习如何使用网页版 Dify、本地部署 Dify，并掌握其核心概念和节点使用方法。
@@ -12,7 +18,7 @@ Dify 的核心优势：
 - 无需编程即可搭建 AI 应用（低代码）
 - 支持私有化部署，保障数据安全
 - 提供丰富的节点类型，灵活组合逻辑
-- 开源免费（GitHub 项目：[langgenius/dify](https)）
+- 开源免费（GitHub 项目：[langgenius/dify](https://github.com/langgenius/dify)）
 
 ---
 

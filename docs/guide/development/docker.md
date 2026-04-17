@@ -1,3 +1,9 @@
+---
+title: "Docker Desktop 安装与配置指南"
+description: "Docker Desktop 安装与配置指南 page"
+sidebar_position: 2
+---
+
 # Docker Desktop 安装与配置指南
 
 > 本指南适用于 Windows 系统。

@@ -1,3 +1,9 @@
+---
+title: "💻 数字时代开源工具实践"
+description: "开源工具实践模块导读，覆盖命令行、Docker、Git 与 Anaconda。"
+sidebar_position: 1
+---
+
 # 💻 数字时代开源工具实践
 
 > 课程篇均为个人看法，不代表官方答案，如有疑问请咨询专业课老师。

@@ -86,3 +86,31 @@ Thanks to all the open-source projects, technical documentation, and community f
 
 ---
 **Stay curious, share willingly, build continuously.** 🚀
+
+## 🧱 Migration Bootstrap (Docusaurus)
+
+The repository now includes a minimal Docusaurus scaffold for progressive migration from Docsify.
+
+### Local Start (Docusaurus)
+
+```bash
+npm install
+npm run start
+```
+
+Then open `http://localhost:3000/`.
+
+### Notes
+
+- Existing Docsify source files are intentionally kept in `docs/` and not deleted.
+- Current docs content remains Markdown-first and can be upgraded to MDX incrementally.
+
+## 🗺️ Future Roadmap
+
+> Updated: 2026/4/17
+
+* Phase 1 (Done): Initialize Docusaurus skeleton and preserve existing Docsify/Markdown assets.
+* Phase 2 (In Progress): Improve information architecture with frontmatter, migration guide, and static image conventions.
+* Phase 3 (Current): Improve UX smoothness using route transition animation and theme-switch transition tuning.
+* Phase 4 (Next): Build stronger visual identity (logo, favicon, social card, unified illustration style).
+* Phase 5 (Later): Gradually upgrade key pages from Markdown to MDX with reusable components.

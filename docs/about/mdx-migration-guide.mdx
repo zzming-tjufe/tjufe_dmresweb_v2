@@ -1,0 +1,85 @@
+---
+title: "MDX 渐进迁移与插图规范"
+description: "文档插图资源目录规范与 Markdown 到 MDX 的渐进迁移建议。"
+sidebar_position: 3
+---
+
+# MDX 渐进迁移与插图规范
+
+本页用于约束后续迁移，目标是：**先稳定内容，再逐步增强表达能力**。
+
+## 1. 静态资源目录规范
+
+- 插图统一放在 `static/img/` 下
+- 推荐按专题分层：`static/img/<topic>/...`
+- 文件名使用小写短横线：`kebab-case`
+- 优先使用 `svg`（示意图）和 `webp/png`（截图）
+
+示例：
+
+```text
+static/
+  img/
+    examples/
+      tjufe-placeholder.svg
+    ai-tools/
+      dify-workflow-overview.webp
+    dev/
+      git-branch-model.svg
+```
+
+在 Markdown/MDX 中可直接引用：
+
+```md
+![示意图](/img/examples/tjufe-placeholder.svg)
+```
+
+## 2. Markdown -> MDX 渐进策略
+
+建议按以下优先级迁移，而不是一次性全量改写：
+
+1. 高访问页面（课程总览、工具总览）
+2. 需要图解步骤的页面（安装部署、流程说明）
+3. 需要交互表达的页面（对比卡片、提示块、流程组件）
+
+迁移原则：
+
+- 保留原 Markdown 内容结构
+- 仅在需要时引入 React 组件
+- 每次迁移只改一个页面，确保可回退
+
+## 3. 推荐 MDX 模板（可复制）
+
+```mdx
+---
+title: "页面标题"
+description: "页面一句话描述"
+sidebar_position: 10
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 页面标题
+
+这是正文说明。
+
+![配图示例](/img/examples/tjufe-placeholder.svg)
+
+<Tabs>
+  <TabItem value="win" label="Windows">
+    Windows 步骤说明。
+  </TabItem>
+  <TabItem value="mac" label="macOS">
+    macOS 步骤说明。
+  </TabItem>
+</Tabs>
+```
+
+## 4. 首批 MDX 候选页面
+
+- `guide/lesson/generativeai`
+- `guide/ai-tools/comfyui`
+- `guide/ai-tools/dify`
+
+这些页面天然适合加入流程图、截图和步骤切换组件。

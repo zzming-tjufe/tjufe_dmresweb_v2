@@ -1,3 +1,9 @@
+---
+title: "ComfyUI 新生入门指南"
+description: "ComfyUI 新生入门指南 page"
+sidebar_position: 1
+---
+
 # ComfyUI 新生入门指南
 
 本指南专为数管大一新生编写，无论你是否具备编程基础，都能一步步上手这款强大的图形化 Stable Diffusion 工作流工具。我们将从零开始，涵盖安装、基础使用，并特别针对 **AMD Radeon 780M/880M** 和 **Intel Arc/Arc Pro/集成显卡（如 Iris Xe、Arc A370M 等）** 用户给出优化建议，最后还会教你如何安装热门插件 **CosyVoice**。

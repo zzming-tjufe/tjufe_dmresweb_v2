@@ -1,3 +1,9 @@
+---
+title: "🐍 面向大一新生的 Anaconda 使用指南"
+description: "🐍 面向大一新生的 Anaconda 使用指南 page"
+sidebar_position: 4
+---
+
 # 🐍 面向大一新生的 Anaconda 使用指南
 
 > 本指南专为刚接触编程和数据科学的大一新生设计，手把手教你安装、配置和使用 Anaconda —— 一个强大的 Python 数据科学平台。

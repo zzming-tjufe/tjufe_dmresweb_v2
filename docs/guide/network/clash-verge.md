@@ -1,3 +1,9 @@
+---
+title: "Clash Verge 使用指南"
+description: "Clash Verge 使用指南 page"
+sidebar_position: 1
+---
+
 # Clash Verge 使用指南
 
 > 本指南旨在介绍网络调试工具的安装，请确保你了解并遵守所在地法律法规及学校网络使用规定。

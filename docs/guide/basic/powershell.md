@@ -1,3 +1,9 @@
+---
+title: "PowerShell 基础使用指南"
+description: "PowerShell 基础使用指南 page"
+sidebar_position: 1
+---
+
 # PowerShell 基础使用指南
 
 ---
