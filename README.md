@@ -22,7 +22,7 @@ The project is fully open-source, written in clear Markdown, and rendered in rea
 **Online Access URLs**:
 
 👉 GitLab: [https://pages.drcheng.group/zhouzeming/dm_res_web_test/](https://pages.drcheng.group/zhouzeming/dm_res_web_test/)  
-👉 GitHub: [https://mrdino-0611.github.io/tjufe_dmres_web/](https://mrdino-0611.github.io/tjufe_dmres_web/)
+👉 GitHub: [https://zzming-tjufe.github.io/tjufe_dmres_web/](https://zzming-tjufe.github.io/tjufe_dmres_web/)
 
 ## 📖 Content Guide
 
