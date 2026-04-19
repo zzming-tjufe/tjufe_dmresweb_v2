@@ -1,21 +1,14 @@
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useMemo} from 'react';
 import {useLocation} from '@docusaurus/router';
 import Layout from '@theme-original/Layout';
+// 问答入口：组件保留在 `src/components/SiteChatAssistant/`，需要时取消下面两行注释并恢复 JSX 中的 `<SiteChatAssistant />`。
+// import SiteChatAssistant from '@site/src/components/SiteChatAssistant';
 import {ThemeTransitionProvider} from '../ThemeTransitionContext';
 
 import styles from './styles.module.css';
 
 export default function LayoutWrapper(props) {
   const location = useLocation();
-  const cleanupTimerRef = useRef(null);
-  const [overlayState, setOverlayState] = useState({
-    active: false,
-    x: 0,
-    y: 0,
-    radius: 0,
-    maxRadius: 0,
-    color: '#ffffff',
-  });
 
   const transitionApi = useMemo(
     () => ({
@@ -33,32 +26,25 @@ export default function LayoutWrapper(props) {
         const rect = event?.currentTarget?.getBoundingClientRect?.();
         const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
         const y = rect ? rect.top + rect.height / 2 : 24;
-        const maxRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
-        const color = nextMode === 'dark' ? '#1f1c19' : '#f7f4ee';
+        const root = document.documentElement;
+        const lightBg =
+          getComputedStyle(root).getPropertyValue('--site-reveal-bg-light').trim() || '#f7f4ee';
+        const darkBg =
+          getComputedStyle(root).getPropertyValue('--site-reveal-bg-dark').trim() || '#1f1c19';
+        const color = nextMode === 'dark' ? darkBg : lightBg;
 
-        if (cleanupTimerRef.current) {
-          window.clearTimeout(cleanupTimerRef.current);
+        // Let pages (e.g. homepage hero) decide where to render the reveal layer.
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('theme-reveal', {
+              detail: {x, y, color},
+            }),
+          );
         }
-
-        setOverlayState({
-          active: true,
-          x,
-          y,
-          radius: 0,
-          maxRadius,
-          color,
-        });
 
         window.requestAnimationFrame(() => {
           applyModeChange();
-          window.requestAnimationFrame(() => {
-            setOverlayState((prev) => ({...prev, radius: prev.maxRadius}));
-          });
         });
-
-        cleanupTimerRef.current = window.setTimeout(() => {
-          setOverlayState((prev) => ({...prev, active: false, radius: 0}));
-        }, 620);
       },
     }),
     [],
@@ -67,21 +53,11 @@ export default function LayoutWrapper(props) {
   return (
     <ThemeTransitionProvider value={transitionApi}>
       <Layout {...props}>
-        {overlayState.active && (
-          <div
-            className={styles.themeRevealOverlay}
-            style={{
-              '--reveal-x': `${overlayState.x}px`,
-              '--reveal-y': `${overlayState.y}px`,
-              '--reveal-radius': `${overlayState.radius}px`,
-              '--reveal-color': overlayState.color,
-            }}
-          />
-        )}
         <div key={location.pathname} className={`${styles.routeTransition} site-theme-claude`}>
           {props.children}
         </div>
       </Layout>
+      {/* <SiteChatAssistant /> */}
     </ThemeTransitionProvider>
   );
 }

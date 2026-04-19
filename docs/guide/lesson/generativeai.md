@@ -1,6 +1,6 @@
 ---
 title: "🧠 生成式人工智能导论"
-description: "生成式 AI 导论模块，衔接 ComfyUI 与 Dify 的学习路径。"
+description: "模块导读：从 ComfyUI 工作流理解生成图像，到 Dify 进行应用编排与落地，建立生成式 AI 的完整上手路径。"
 sidebar_position: 2
 ---
 
@@ -27,5 +27,10 @@ sidebar_position: 2
 
 希望这份小指南能帮助各位更好地适应专业学习。
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月22日
+## 文档索引
+
+- [ComfyUI 新生入门指南](../ai-tools/comfyui)
+- [Dify 新手入门指南](../ai-tools/dify)
+
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日

@@ -1,6 +1,6 @@
 ---
 title: "PowerShell 基础使用指南"
-description: "PowerShell 基础使用指南 page"
+description: "Windows 终端入门：常用别名、目录与文件操作，以及进程、服务、管道与帮助命令。"
 sidebar_position: 1
 ---
 
@@ -79,10 +79,10 @@ rm -r homework
   `cd "My Documents"`
 
 ---
-# PowerShell 高级使用指南
----
 
-## 1. 查看和筛选进程
+## 进阶篇
+
+### 1. 查看和筛选进程
 
 ```powershell
 # 查看所有运行的程序（进程）
@@ -99,7 +99,7 @@ kill -Name notepad
 
 ---
 
-## 2. 查看服务状态
+### 2. 查看服务状态
 
 ```powershell
 # 列出所有 Windows 服务
@@ -117,7 +117,7 @@ Stop-Service wuauserv
 
 ---
 
-## 3. 管道 + 筛选：组合命令处理数据
+### 3. 管道 + 筛选：组合命令处理数据
 
 ```powershell
 # 列出当前目录下所有 .txt 文件
@@ -134,7 +134,7 @@ ls | sort LastWriteTime -Descending | select -First 5 Name, LastWriteTime
 
 ---
 
-## 4. 快速查看系统信息
+### 4. 快速查看系统信息
 
 ```powershell
 # 查看操作系统版本
@@ -143,15 +143,15 @@ $PSVersionTable
 # 查看本机 IP 地址（简单方式）
 ipconfig | sls IPv4
 
-# 或用 PowerShell 原生命令（稍高级）
-(gwmi Win32_NetworkAdapterConfiguration | ? { $_.IPEnabled }).IPAddress
+# 或用 PowerShell 原生命令（稍高级；PowerShell 7+ 推荐 Get-CimInstance）
+(Get-CimInstance Win32_NetworkAdapterConfiguration | Where-Object { $_.IPEnabled }).IPAddress
 ```
 
 > 💡 `sls` = `Select-String`（类似 Linux 的 `grep`），用于搜索文本。
 
 ---
 
-## 5. 下载文件（无需浏览器）
+### 5. 下载文件（无需浏览器）
 
 ```powershell
 # 从网上下载一个文件到本地
@@ -162,7 +162,7 @@ curl https://example.com/file.zip -OutFile file.zip
 
 ---
 
-## 6. 查找文件内容
+### 6. 查找文件内容
 
 ```powershell
 # 在当前目录所有 .txt 文件中搜索包含 "error" 的行
@@ -173,7 +173,7 @@ ls *.txt | sls error
 
 ---
 
-## 7. 获取命令帮助（非常重要！）
+### 7. 获取命令帮助（非常重要！）
 
 ```powershell
 # 查看某个命令怎么用
@@ -189,7 +189,7 @@ man curl   # 和 help 一样
 
 ---
 
-## 8. 快速清空或写入文件
+### 8. 快速清空或写入文件
 
 ```powershell
 # 创建或覆盖文件内容
@@ -206,7 +206,7 @@ echo $null > log.txt
 
 ---
 
-## 9. 查看环境变量
+### 9. 查看环境变量
 
 ```powershell
 # 查看所有环境变量
@@ -218,7 +218,7 @@ $env:PATH
 
 ---
 
-## 10. 重启或关机（需管理员权限）
+### 10. 重启或关机（需管理员权限）
 
 ```powershell
 # 10 秒后关机
@@ -252,5 +252,5 @@ restart-computer
 > ✅ **建议**：先熟练使用这些命令中的 3–5 个，比如 `ps`、`sls`、`curl`、`help`，就能完成很多实用任务，而无需写复杂脚本。
 
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月21日
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日

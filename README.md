@@ -105,6 +105,33 @@ Then open `http://localhost:3000/`.
 - Existing Docsify source files are intentionally kept in `docs/` and not deleted.
 - Current docs content remains Markdown-first and can be upgraded to MDX incrementally.
 
+### 站点内问答（可选，默认关闭）
+
+仓库里已实现右下角「问答」浮层，代码在 `src/components/SiteChatAssistant/`；配置在 `docusaurus.config.js` 的 `customFields`（构建时从环境变量读取）。**当前默认不在界面上显示**：`src/theme/Layout/index.js` 里已注释掉入口挂载，需要时自行恢复 import 与 `<SiteChatAssistant />` 即可。
+
+**环境变量（构建时生效，勿把 API 密钥写进仓库）：**
+
+| 变量 | 作用 |
+|------|------|
+| `CHAT_EMBED_URL` | 嵌入第三方页面（如 RAGFlow「Embed into webpage」里 iframe 的 `src` 完整 URL）。无需自建 HTTP 后端。 |
+| `CHAT_API_URL` | 可选。自建问答接口时使用；密钥只能放在服务端，不能出现在前端。 |
+
+**本地试用（PowerShell 示例）：**
+
+```powershell
+$env:CHAT_EMBED_URL = "https://或http://你的嵌入页完整地址"
+npm run start
+```
+
+子路径部署时开发地址一般为 `http://localhost:3000/tjufe_dmres_web/`（与 `baseUrl` 一致）。
+
+**与本地 Docker（如 RAGFlow）的常见关系：**
+
+- 本机 `npm run start` 时，`CHAT_EMBED_URL` 指向 `http://127.0.0.1:端口/...` 通常只在你自己电脑上有效。
+- 发布到 GitHub Pages（HTTPS）后，若嵌入地址仍是本机 HTTP，他人无法访问你的 Docker，且可能触发浏览器混合内容限制；面向公众的上线方案需单独规划（公网 HTTPS、或线上不配嵌入仅保留文档）。
+
+RAGFlow 嵌入说明可参考官方文档：[Embed Agent into webpage](https://github.com/infiniflow/ragflow/blob/main/docs/guides/agent/embed_agent_into_webpage.md)。
+
 ## 🗺️ Future Roadmap
 
 > Updated: 2026/4/17

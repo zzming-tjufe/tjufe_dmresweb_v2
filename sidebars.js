@@ -10,6 +10,7 @@ const sidebars = {
       link: {type: 'doc', id: 'guide/lesson/opensourcetools'},
       items: [
         'guide/basic/powershell',
+        'guide/development/vscode',
         'guide/development/docker',
         'guide/development/git',
         'guide/development/anaconda',

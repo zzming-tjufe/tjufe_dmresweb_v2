@@ -35,5 +35,5 @@ sidebar_position: 1
   
 --- 
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
 > 最后更新：2026年1月22日

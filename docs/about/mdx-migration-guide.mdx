@@ -28,11 +28,13 @@ static/
       git-branch-model.svg
 ```
 
-在 Markdown/MDX 中可直接引用：
+在 Markdown/MDX 中可直接引用（站点部署在子路径时，Docusaurus 会按 `baseUrl` 处理根路径）：
 
 ```md
 ![示意图](/img/examples/tjufe-placeholder.svg)
 ```
+
+更多约定见仓库内 `static/img/README.md`（若存在）。
 
 ## 2. Markdown -> MDX 渐进策略
 
@@ -81,5 +83,6 @@ import TabItem from '@theme/TabItem';
 - `guide/lesson/generativeai`
 - `guide/ai-tools/comfyui`
 - `guide/ai-tools/dify`
+- `guide/development/vscode`（插件列表、界面截图较适合用 Tabs 分平台展示）
 
 这些页面天然适合加入流程图、截图和步骤切换组件。

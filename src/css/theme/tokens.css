@@ -1,0 +1,101 @@
+/**
+ * 全站颜色单一来源：调整主题主色、浅/深背景与链接色，请只改本文件中的变量。
+ * 首页模块卡片等通过 color-mix(..., var(--ifm-color-primary), ...) 自动跟随。
+ */
+:root {
+  --ifm-color-primary: #8a5a44;
+  --ifm-color-primary-dark: #7b503d;
+  --ifm-color-primary-darker: #734b39;
+  --ifm-color-primary-darkest: #5f3e2f;
+  --ifm-color-primary-light: #966853;
+  --ifm-color-primary-lighter: #9f735f;
+  --ifm-color-primary-lightest: #b08875;
+  --ifm-code-font-size: 95%;
+
+  --ifm-background-color: #f7f4ee;
+  --ifm-background-surface-color: #fcfaf6;
+  --ifm-navbar-background-color: rgba(247, 244, 238, 0.92);
+  --ifm-footer-background-color: #f0ece4;
+
+  --ifm-font-color-base: #2b2723;
+  --ifm-heading-color: #1f1c19;
+
+  --ifm-link-color: #7b503d;
+  --ifm-link-hover-color: #5f3e2f;
+
+  --ifm-menu-color-active: #7b503d;
+  --ifm-navbar-link-color: #3f352d;
+  --ifm-navbar-link-hover-color: #5f3e2f;
+
+  --site-link-color: #7b503d;
+  --site-link-hover-color: #5f3e2f;
+  --site-link-visited-color: #6b4d3b;
+
+  /** 主按钮上的前景色（与 --ifm-color-primary 成对使用） */
+  --site-on-primary: #fff8f1;
+  /** 主题切换圆形揭示层目标色（须与页面底色一致） */
+  --site-reveal-bg-light: #f7f4ee;
+  --site-reveal-bg-dark: #1f1c19;
+  /** 次要说明文字 */
+  --site-text-muted: #5a5249;
+  --site-text-subtle: #5c554d;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #c29378;
+  --ifm-color-primary-dark: #b98569;
+  --ifm-color-primary-darker: #b37d60;
+  --ifm-color-primary-darkest: #986850;
+  --ifm-color-primary-light: #c9a087;
+  --ifm-color-primary-lighter: #cfaa93;
+  --ifm-color-primary-lightest: #d9bda9;
+
+  --ifm-background-color: #1f1c19;
+  --ifm-background-surface-color: #24211d;
+  --ifm-navbar-background-color: rgba(31, 28, 25, 0.92);
+  --ifm-footer-background-color: #191715;
+
+  --ifm-font-color-base: #e8dfd4;
+  --ifm-heading-color: #f7f1e8;
+
+  --ifm-link-color: #d7b29b;
+  --ifm-link-hover-color: #edd0be;
+
+  --ifm-menu-color-active: #d7b29b;
+  --ifm-navbar-link-color: #e7d6c7;
+  --ifm-navbar-link-hover-color: #f2d8c4;
+
+  --site-link-color: #d7b29b;
+  --site-link-hover-color: #f2d8c4;
+  --site-link-visited-color: #e1c4af;
+
+  --site-on-primary: #1f1c19;
+  --site-text-muted: #cec2b4;
+  --site-text-subtle: #c6b8a8;
+}
+
+body {
+  font-family: "DengXian", "Microsoft YaHei", "PingFang SC", "SimSun", "Times New Roman", serif;
+}
+
+/* 页脚与主题配置中的 style 一致，避免与全站暖色脱节 */
+.footer {
+  background-color: var(--ifm-footer-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.footer__title {
+  color: var(--ifm-heading-color);
+}
+
+.footer__link-item a {
+  color: var(--site-link-color);
+}
+
+.footer__link-item a:hover {
+  color: var(--site-link-hover-color);
+}
+
+.footer__copyright {
+  color: var(--site-text-muted);
+}

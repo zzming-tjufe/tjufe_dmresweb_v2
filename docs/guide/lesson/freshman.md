@@ -1,6 +1,6 @@
 ---
 title: "👨‍🎓&👩‍🎓 新手必读"
-description: "新生必读模块，包含 Markdown、环境配置、搜索与阅读方法。"
+description: "模块导读：Markdown 写作、开发环境配置、搜索策略与英文文档阅读方法，帮助新生建立可持续的自学与产出习惯。"
 sidebar_position: 4
 ---
 
@@ -18,5 +18,12 @@ sidebar_position: 4
 
 这些工具和方法，是我一路走来总结出的“生存必备技能”。希望它们能成为你大学学习的第一份“数据管理工具箱”，助你从容启程，稳步进阶。
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月22日
+## 文档索引
+
+- [Markdown 入门指南](../basic/markdown)
+- [如何配置编程环境](../basic/envs)
+- [高效搜索技巧](../basic/search)
+- [英文文档阅读方法](../basic/reading)
+
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日

@@ -1,12 +1,12 @@
 ---
 title: "本站搭建纪实：从构想到上线"
-description: "天财数管资源站从构想到上线的构建过程与实战复盘。"
+description: "Docsify 时期选型与搭建步骤复盘，并增补 Docusaurus 迁移动机与本地/发布流程。"
 sidebar_position: 2
 ---
 
-### 本站搭建纪实：从构想到上线
-
 本文档旨在完整记录本资源站的搭建过程、技术选型与实现细节。它并非一份标准的教程，而是一份**个人的决策记录和实战复盘**，希望能为有意自行搭建类似文档站点的同学提供一份具参考价值的路径说明。
+
+> **2026 年更新**：下文 **「二、技术选型」** 仍以 **Docsify 时期**的决策为主干，便于理解历史；当前仓库已叠加 **Docusaurus** 作为对外站点生成方式，详见文末 **「六、后续演进」**。
 
 #### 一、项目初衷与目标
 
@@ -64,8 +64,8 @@ docsify serve docs
 在 `window.$docsify` 中进行主要配置：
 ```javascript
 window.$docsify = {
-  name: ‘天财数管资源站’,
-  repo: ‘https://github.com/yourname/my-knowledge-base’,
+  name: '天财数管资源站',
+  repo: 'https://github.com/yourname/my-knowledge-base',
   loadSidebar: true,
       sidebar: {
         collaspe: true
@@ -132,14 +132,25 @@ docs/
 *   **版本控制即备份**：所有内容存于 Git，再无丢失之虞，且历史版本可随时追溯。
 *   **文档即产品**：网站结构本身也是产品设计的一部分。清晰的信息架构能极大提升访客的获取效率。
 
+#### 六、后续演进：叠加 Docusaurus（约 2026 年起）
+
+在保留 `docs/` 下原有 Markdown 与 Docsify 静态入口的前提下，仓库引入 **Docusaurus**：
+
+- **动机**：更强的信息架构（侧栏、站内搜索潜力）、首页与主题能力、React/MDX 扩展空间，并逐步向「现代文档站」体验靠拢。
+- **做法**：在仓库根目录增加 `docusaurus.config.js`、`sidebars.js`，文档内容仍主要放在 `docs/**/*.md`；通过 `exclude` 等配置忽略 Docsify 专用文件（如 `_sidebar.md` 片段），避免与 Docusaurus 路由冲突。
+- **本地与发布**：`npm install` → `npm run start` 本地预览 → `npm run build` 生成静态站点，部署到 GitHub Pages（`baseUrl` 等与 `docusaurus.config.js` 中一致）。
+
+原 Docsify 流程（`docsify serve docs`）仍可用于对照旧版行为，**以项目 README 与当前分支实际脚本为准**。
 
 #### 结语
+
 本网站的搭建是一次“用技术滋养学习，以学习反哺技术”的实践。它现在不仅是一个知识容器，其构建过程本身也成为了值得记录和分享的经验。
 
 **本纪实文档与站内所有指南一样，采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可协议共享。** 如果你有更好的建议或发现了任何问题，欢迎通过 GitHub Issues 提出或直接 Fork 项目进行改进。
 
-希望这份记录对你有用。从阅读者到构建者，第一步往往始于一次简单的 `docsify init`
+希望这份记录对你有用。从阅读者到构建者，第一步往往始于一次简单的 `docsify init`。
 
+---
 
-> 2026年1月22日   
-> 数管2501 周泽铭（居居明）
+> 2026年1月22日 初稿；2026年4月19日 增补「六、后续演进：Docusaurus」  
+> 数管2501 周泽铭（zzming-tjufe）

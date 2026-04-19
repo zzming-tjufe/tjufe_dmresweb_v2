@@ -1,6 +1,6 @@
 ---
 title: "🛠️ 如何配置编程环境"
-description: "🛠️ 如何配置编程环境 page"
+description: "Anaconda/Conda 环境隔离、创建与导出；PATH 与常见报错的排查思路。"
 sidebar_position: 2
 ---
 
@@ -19,7 +19,7 @@ sidebar_position: 2
 ## 标准配置流程（使用 Anaconda）
 
 ### 步骤一：安装 Anaconda 发行版
-1.  **下载**：访问 [Anaconda 官网](https://www.anaconda.com/download)，选择适合你操作系统（Windows/macOS/Linux）的 **Python 3.x** 图形化安装包下载。
+1.  **下载**：访问 [Anaconda 发行版下载页](https://www.anaconda.com/download)（或 [Miniconda](https://docs.conda.io/en/latest/miniconda.html) 轻量入口），选择适合你操作系统（Windows/macOS/Linux）的 **Python 3.x** 图形化安装包下载。
 2.  **安装**：运行安装程序，基本遵循默认设置。但到了这一步**非常关键**：
     - **（Windows）** 在 `Advanced Installation Options` 中，**务必勾选** `Add Anaconda3 to my PATH environment variable`（将其添加到 PATH 环境变量）。虽然安装程序不推荐，但对新手后续使用各种编辑器、命令行工具至关重要。
     - **（macOS/Linux）** 按提示安装即可。
@@ -101,5 +101,5 @@ conda activate my_data_project
 
 ---
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月18日
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日

@@ -1,6 +1,6 @@
 ---
 title: "📖 英文文档阅读方法"
-description: "📖 英文文档阅读方法 page"
+description: "技术英文阅读心态、翻译与划词工具、文档结构扫读法与 README / API Reference 抓取技巧。"
 sidebar_position: 4
 ---
 
@@ -50,5 +50,5 @@ sidebar_position: 4
 
 跨越这座山，世界将对你敞开大门。
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月18日
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日

@@ -1,6 +1,6 @@
 ---
 title: "Dify 新手入门指南（面向大一新生）"
-description: "Dify 新手入门指南（面向大一新生） page"
+description: "Dify 云空间与 Docker 本地部署入门：环境变量、Compose 启动与 Chatbot / Agent / Workflow 概念，附常见问题。"
 sidebar_position: 2
 ---
 
@@ -25,28 +25,28 @@ Dify 的核心优势：
 ## 二、使用网页版 Dify（快速体验）
 
 ### 1. 注册账号
-访问官方在线平台：[https://cloud.dify.ai](https://cloud.dify.ai)  
-点击右上角 **“Sign Up”**，使用邮箱或 GitHub 账号注册。
+访问官方在线平台：[https://cloud.dify.ai](https://cloud.dify.ai)（登录页示例：[cloud.dify.ai/signin](https://cloud.dify.ai/signin)）  
+点击右上角 **注册 / Sign Up**，使用邮箱或 GitHub 等支持的登录方式。
 
 ### 2. 创建第一个应用
-- 登录后点击 **“+ Create App”**
-- 选择应用类型：
+- 登录后点击 **创建应用 / Create App**（文案以你看到的界面语言为准）
+- 选择应用类型（名称可能随版本微调，以向导为准）：
   - **Chatbot**：对话式 AI（如客服机器人）
   - **Agent**：具备工具调用能力的智能体
   - **Workflow**：复杂逻辑编排（推荐进阶使用）
-- 输入应用名称（如 “新生问答助手”），点击 **Create**
+- 输入应用名称（如 “新生问答助手”），点击 **创建 / Create**
 
 ### 3. 配置模型与 Prompt
-- 在 **Prompt Engineering** 页面，编写系统提示词（System Prompt），例如：
+- 在 **提示词编排 / Prompt** 相关页面，编写系统提示词（System Prompt），例如：
   ```text
   你是一个面向大学新生的校园助手，回答问题时要亲切、简洁、准确。
   如果不知道答案，请说“我还不了解这个问题，建议咨询辅导员”。
   ```
-- 在右侧可选择模型（如 GPT-4、Claude 等），需先在 **Settings → Model Provider** 中配置 API Key。
+- 在右侧可选择模型（如 GPT-4、Claude 等），需先在 **设置 → 模型供应商 / Settings → Model Provider** 中配置 API Key。
 
 ### 4. 测试与发布
-- 点击右上角 **“Preview”** 实时测试对话效果
-- 满意后可点击 **“Publish”** 获取嵌入代码或分享链接
+- 点击 **预览 / Preview** 实时测试对话效果
+- 满意后可点击 **发布 / Publish** 获取嵌入代码或分享链接
 
 > 💡 提示：网页版适合快速原型验证，但涉及敏感数据或长期使用建议本地部署。
 
@@ -55,10 +55,12 @@ Dify 的核心优势：
 ## 三、本地使用 Docker 部署 Dify
 
 ### 前提条件
-- 安装 [Docker](https://www.docker.com/) 和 [Docker Compose](https://docs.docker.com/compose/install/)
+- 安装 [Docker](https://www.docker.com/) 与 **Docker Compose V2**（`docker compose` 子命令；若仅有旧版可尝试 `docker-compose`）
 - 至少 4GB 内存，推荐 Linux / macOS / WSL2（Windows 用户建议使用 WSL2）
 
 ### 部署步骤
+
+以下流程与官方仓库 `docker/README.md` 一致；若你克隆到的是**很旧的分支**，请以该分支内说明为准。
 
 #### 1. 克隆官方仓库
 ```bash
@@ -71,38 +73,47 @@ cd dify
 cd docker
 ```
 
-#### 3. 复制环境配置文件
+#### 3. 准备环境文件
 ```bash
 cp .env.example .env
-cp docker-compose.yaml.example docker-compose.yaml
 ```
 
-#### 4. 修改 `.env` 文件（关键配置）
-```env
-# 设置你的公开访问地址（本地可设为 http://localhost）
-CONSOLE_API_URL=http://localhost:3001
-WEB_API_URL=http://localhost:3001
+当前主线版本在 `docker/` 下已自带 **`docker-compose.yaml`**，一般**不需要**再执行历史上的 `cp docker-compose.yaml.example docker-compose.yaml`（旧教程步骤；若你本地没有该 yaml，请重新 `git pull` 或对照 [langgenius/dify 的 docker 目录](https://github.com/langgenius/dify/tree/main/docker)）。
 
-# 可选：配置默认模型（如使用 OpenAI）
-OPENAI_API_KEY=your_openai_api_key_here
-```
+#### 4. 按需修改 `.env`
 
-> ⚠️ 注意：若不使用外部模型，可跳过 API Key，后续在 Web 界面中配置。
+`docker/.env.example` 中有大量注释说明。单机本机访问时，许多 **`*_URL` 类变量可以留空**（表示与当前访问「同域」），先保持默认再启动，若浏览器里链接或文件预览异常，再按注释逐项填写。
+
+常见变量名（随版本可能增加，以 `.env.example` 为准）包括：`CONSOLE_API_URL`、`CONSOLE_WEB_URL`、`SERVICE_API_URL`、`APP_API_URL`、`APP_WEB_URL`、`FILES_URL` 等。
+
+若使用 OpenAI 等云端模型，在 `.env` 或 Web 控制台中配置对应 **API Key**；不要把含密钥的 `.env` 提交到 Git。
 
 #### 5. 启动服务
+```bash
+docker compose up -d
+```
+
+若提示找不到 `compose` 子命令，可改用：
+
 ```bash
 docker-compose up -d
 ```
 
 #### 6. 访问本地 Dify
-- 控制台（管理界面）：[http://localhost:3000](http://localhost:3000)
-- API 服务：[http://localhost:3001](http://localhost:3001)
+
+默认由 **Nginx** 统一对外暴露 **`EXPOSE_NGINX_PORT`（在 `.env` 中默认为 80）**。本机浏览器通常访问：
+
+- [http://localhost](http://localhost)
+
+若本机 **80 端口已被占用**，在 `.env` 中修改 `EXPOSE_NGINX_PORT`（例如改为 `8080`）后，访问 `http://localhost:8080`。
+
+> 旧版文档里常见的「控制台 3000、API 3001」拆分端口，与**当前主线 docker-compose 一体化入口**不一定一致；以后都以仓库 `docker/README.md` 与 `.env.example` 为准。
 
 首次访问会引导你创建管理员账号。
 
 #### 7. 停止服务（可选）
 ```bash
-docker-compose down
+docker compose down
 ```
 
 > ✅ 成功！你现在拥有一个完全私有的 Dify 实例，所有数据保存在本地。
@@ -185,7 +196,7 @@ Dify 支持三种主要应用类型，适用于不同场景：
 2. **调试技巧**：在每个节点后添加 **Debug 节点**（或查看执行日志）观察变量值
 3. **知识库优化**：上传文档后，在 Knowledge Retrieval 节点调整“Top K”和“相似度阈值”
 4. **本地模型支持**：可通过 Ollama 或 vLLM 部署本地 LLM，并在 Dify 中配置为模型提供商
-5. **版本控制**：Dify 支持应用版本快照，重要修改前记得“Save as Version”
+5. **版本控制**：Dify 支持应用版本/快照类能力，重要修改前记得在界面中保存版本（按钮文案以当前版本为准）
 
 ---
 
@@ -208,5 +219,5 @@ A：完全支持，包括界面、Prompt、知识库文档等。
 > 🎓 祝你在 AI 开发之旅中收获满满！如有疑问，可查阅 [Dify 官方文档](https://docs.dify.ai) 或加入社区讨论。
 
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月17日
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日（修订：Docker 部署步骤、端口与 `.env` 变量名与官方主线仓库对齐。）

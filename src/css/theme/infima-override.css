@@ -1,0 +1,23 @@
+/**
+ * 放在 custom.css 最后导入，用更高优先级压住 Infima 默认蓝主色（#3578e5 等）。
+ * 若仍偏色，请检查浏览器开发者工具中 --ifm-color-primary 的计算值。
+ */
+html:root {
+  --ifm-color-primary: #8a5a44 !important;
+  --ifm-color-primary-dark: #7b503d !important;
+  --ifm-color-primary-darker: #734b39 !important;
+  --ifm-color-primary-darkest: #5f3e2f !important;
+  --ifm-color-primary-light: #966853 !important;
+  --ifm-color-primary-lighter: #9f735f !important;
+  --ifm-color-primary-lightest: #b08875 !important;
+}
+
+html[data-theme='dark'] {
+  --ifm-color-primary: #c29378 !important;
+  --ifm-color-primary-dark: #b98569 !important;
+  --ifm-color-primary-darker: #b37d60 !important;
+  --ifm-color-primary-darkest: #986850 !important;
+  --ifm-color-primary-light: #c9a087 !important;
+  --ifm-color-primary-lighter: #cfaa93 !important;
+  --ifm-color-primary-lightest: #d9bda9 !important;
+}

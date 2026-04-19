@@ -1,6 +1,6 @@
 ---
 title: "🌐 科学上网"
-description: "科学上网模块导读，帮助新生建立基础网络访问能力。"
+description: "模块导读：面向学习与科研的网络访问基础与工具选择建议，帮助获取 GitHub、arXiv、官方文档等关键资源。"
 sidebar_position: 3
 ---
 
@@ -21,7 +21,7 @@ sidebar_position: 3
 
 ## 我推荐的工具：Clash Verge
 
-我已经在指南中介绍了Clash Verge，这里再简单强调一下它为什么适合本专业的同学：
+详细安装与配置见：[Clash Verge 指南](../network/clash-verge)。这里再简单强调一下它为什么适合本专业的同学：
 
 - 功能强大：支持多种代理协议，能满足不同网络环境下的连接需求。
 - 界面友好：相比命令行工具，它的图形化界面更直观，易于上手。
@@ -35,5 +35,5 @@ sidebar_position: 3
 
 希望这份小指南能帮助各位更好地适应专业学习。
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月22日
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日

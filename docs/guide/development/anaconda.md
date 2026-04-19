@@ -1,7 +1,7 @@
 ---
 title: "🐍 面向大一新生的 Anaconda 使用指南"
-description: "🐍 面向大一新生的 Anaconda 使用指南 page"
-sidebar_position: 4
+description: "Anaconda 安装、Navigator 与终端、conda 环境与 Jupyter 入门，以及镜像与常见问题。"
+sidebar_position: 5
 ---
 
 # 🐍 面向大一新生的 Anaconda 使用指南
@@ -78,15 +78,13 @@ sidebar_position: 4
 打开终端，运行以下命令（以 Python 3.11 为例）：
 
 ```bash
-# 下载安装脚本（请根据官网链接替换 URL）
-wget https://repo.anaconda.com/archive/Anaconda3-2023.09-Linux-x86_64.sh
+# 在浏览器打开 https://repo.anaconda.com/archive/ ，下载与你 CPU 架构匹配的 Anaconda3-*-Linux-x86_64.sh（文件名随版本变化）
+# 进入下载目录后执行（把下面两行里的文件名改成你下载的真实文件名）：
+# wget https://repo.anaconda.com/archive/<Anaconda3-...-Linux-x86_64.sh>
+# bash <Anaconda3-...-Linux-x86_64.sh>
 
-# 运行安装脚本
-bash Anaconda3-2023.09-Linux-x86_64.sh
-
-# 按提示按回车阅读协议，输入 yes 同意
-# 默认安装路径为 ~/anaconda3
-# 最后询问是否初始化 conda，输入 yes
+# 按提示阅读协议并输入 yes；默认安装路径多为 ~/anaconda3
+# 最后询问是否初始化 conda 时建议输入 yes
 ```
 
 安装完成后重启终端，或运行：
@@ -246,5 +244,5 @@ conda config --set show_channel_urls yes
 
 --- 
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月15日
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日

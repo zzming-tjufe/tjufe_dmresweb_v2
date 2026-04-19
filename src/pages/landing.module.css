@@ -1,0 +1,279 @@
+/**
+ * RAGFlow 风格一级落地页：纯黑底、高对比网格、四角星 + 线段拖尾（由 rAF 匀速驱动）。
+ * body.landing-ragflow-theme：顶栏/页脚与首页视觉统一。
+ */
+
+.page {
+  --rag-bg: #000000;
+  /* 网格线：接近参考图的浅灰可见度 */
+  --rag-grid-line: rgba(255, 255, 255, 0.11);
+  --rag-grid-line-soft: rgba(255, 255, 255, 0.055);
+  --rag-teal: #00d4b4;
+  --rag-teal-soft: rgba(0, 220, 180, 0.35);
+  --rag-star: #4fd1c5;
+  --rag-text: rgba(245, 250, 248, 0.94);
+  --rag-muted: rgba(180, 195, 190, 0.78);
+  --rag-subtle: rgba(140, 160, 155, 0.65);
+
+  position: relative;
+  min-height: calc(100vh - var(--ifm-navbar-height));
+  display: flex;
+  flex-direction: column;
+  background: var(--rag-bg);
+}
+
+.hero {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(3.25rem, 9vw, 5.5rem) 1.25rem clamp(4rem, 14vh, 7.5rem);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--rag-bg);
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 大网格：与光点同 CELL，线色加亮 */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-color: var(--rag-bg);
+  background-image:
+    linear-gradient(var(--rag-grid-line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rag-grid-line-soft) 1px, transparent 1px),
+    linear-gradient(var(--rag-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rag-grid-line) 1px, transparent 1px);
+  background-size:
+    120px 120px,
+    120px 120px,
+    120px 120px,
+    120px 120px;
+  background-position:
+    0 0,
+    0 0,
+    1px 1px,
+    1px 1px;
+  mask-image: radial-gradient(ellipse 85% 70% at 50% 45%, #000 12%, transparent 72%);
+}
+
+/* 当前移动线段上的青色拖尾（由 JS 写 left/top/宽高/渐变） */
+.lightTrail {
+  position: absolute;
+  z-index: 2;
+  border-radius: 2px;
+  pointer-events: none;
+  will-change: left, top, width, height;
+  opacity: 0;
+}
+
+.lightWrap {
+  position: absolute;
+  z-index: 3;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  will-change: left, top;
+}
+
+.lightGlow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 140px;
+  height: 140px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle,
+      rgba(79, 209, 197, 0.42) 0%,
+      rgba(0, 220, 180, 0.14) 42%,
+      transparent 68%);
+  filter: blur(16px);
+  mix-blend-mode: screen;
+}
+
+/* 四角星（四尖、8 顶点） */
+.lightStar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  background: var(--rag-star);
+  clip-path: polygon(
+    50% 4%,
+    61% 40%,
+    96% 50%,
+    61% 60%,
+    50% 96%,
+    39% 60%,
+    4% 50%,
+    39% 40%
+  );
+  filter: drop-shadow(0 0 8px rgba(79, 209, 197, 0.85)) drop-shadow(0 0 18px rgba(0, 220, 180, 0.45));
+}
+
+.inner {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.kicker {
+  display: inline-block;
+  margin: 0 0 1.1rem;
+  padding: 0.38rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--rag-subtle);
+  background: rgba(0, 40, 36, 0.55);
+  border: 1px solid rgba(0, 210, 180, 0.22);
+}
+
+.title {
+  margin: 0 0 1.1rem;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+  color: var(--rag-text);
+}
+
+.titleAccent {
+  background: linear-gradient(120deg, #5eead4 0%, #00d4b4 38%, #34d399 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub {
+  margin: 0 auto;
+  font-size: clamp(1rem, 2.1vw, 1.12rem);
+  line-height: 1.75;
+  color: var(--rag-muted);
+}
+
+.actions {
+  margin-top: 2.1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  background: rgba(10, 14, 13, 0.92) !important;
+  border: 1px solid rgba(0, 210, 180, 0.5) !important;
+  color: #eafff8 !important;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.35),
+    0 10px 40px rgba(0, 200, 170, 0.18);
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(0, 235, 200, 0.75) !important;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.25),
+    0 14px 48px rgba(0, 220, 185, 0.28);
+  color: #f6fffd !important;
+}
+
+.secondaryBtn {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: var(--rag-text) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.secondaryBtn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(0, 210, 180, 0.35) !important;
+  background: rgba(0, 60, 52, 0.35) !important;
+  color: #f0fffa !important;
+}
+
+.hint {
+  margin-top: 1.85rem;
+  font-size: 0.86rem;
+  color: var(--rag-subtle);
+}
+
+.hint code {
+  font-size: 0.9em;
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+  background: rgba(0, 80, 70, 0.35);
+  border: 1px solid rgba(0, 200, 170, 0.2);
+  color: rgba(200, 235, 225, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .primaryBtn,
+  .secondaryBtn {
+    transition: none;
+  }
+
+  .primaryBtn:hover,
+  .secondaryBtn:hover {
+    transform: none;
+  }
+}
+
+:global(body.landing-ragflow-theme .navbar) {
+  background: rgba(4, 6, 8, 0.92) !important;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 200, 170, 0.12);
+  box-shadow: none;
+}
+
+:global(body.landing-ragflow-theme .navbar__title),
+:global(body.landing-ragflow-theme .navbar__link) {
+  color: rgba(238, 250, 246, 0.9) !important;
+}
+
+:global(body.landing-ragflow-theme .navbar__link:hover),
+:global(body.landing-ragflow-theme .navbar__link--active) {
+  color: #5eead4 !important;
+}
+
+:global(body.landing-ragflow-theme .footer) {
+  background: #030506 !important;
+  color: rgba(160, 175, 170, 0.75) !important;
+  border-top: 1px solid rgba(0, 200, 170, 0.1);
+}
+
+:global(body.landing-ragflow-theme .footer__link-item a) {
+  color: rgba(190, 210, 205, 0.85) !important;
+}
+
+:global(body.landing-ragflow-theme .footer__link-item a:hover) {
+  color: #5eead4 !important;
+}
+
+:global(body.landing-ragflow-theme .footer__copyright) {
+  color: rgba(130, 150, 145, 0.65) !important;
+}

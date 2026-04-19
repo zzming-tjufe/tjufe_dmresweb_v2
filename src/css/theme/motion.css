@@ -1,0 +1,27 @@
+html,
+body,
+.navbar,
+.footer,
+.main-wrapper,
+.card,
+.step,
+.theme-doc-markdown {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  .navbar,
+  .footer,
+  .main-wrapper,
+  .card,
+  .step,
+  .theme-doc-markdown {
+    transition: none;
+  }
+}

@@ -1,0 +1,163 @@
+/* Minimal Paper typography for markdown docs */
+.theme-doc-markdown {
+  font-size: 1.03rem;
+  line-height: 1.9;
+  color: var(--ifm-font-color-base);
+}
+
+.theme-doc-markdown > * + * {
+  margin-top: 1.05rem;
+}
+
+.theme-doc-markdown h1,
+.theme-doc-markdown h2,
+.theme-doc-markdown h3,
+.theme-doc-markdown h4 {
+  color: var(--ifm-heading-color);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  margin-top: 2rem;
+  margin-bottom: 0.7rem;
+}
+
+.theme-doc-markdown h1 {
+  font-size: 2rem;
+  font-weight: 760;
+}
+
+.theme-doc-markdown h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(123, 80, 61, 0.2);
+}
+
+.theme-doc-markdown h3 {
+  font-size: 1.28rem;
+  font-weight: 680;
+}
+
+.theme-doc-markdown h4 {
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.theme-doc-markdown p,
+.theme-doc-markdown li {
+  color: var(--ifm-font-color-base);
+}
+
+.theme-doc-markdown ul,
+.theme-doc-markdown ol {
+  padding-left: 1.2rem;
+}
+
+.theme-doc-markdown li + li {
+  margin-top: 0.35rem;
+}
+
+.theme-doc-markdown hr {
+  border: none;
+  border-top: 1px solid rgba(123, 80, 61, 0.2);
+  margin: 1.8rem 0;
+}
+
+.theme-doc-markdown blockquote {
+  margin: 1.1rem 0;
+  padding: 0.8rem 1rem;
+  border-left: 3px solid rgba(123, 80, 61, 0.45);
+  background: rgba(123, 80, 61, 0.07);
+  border-radius: 8px;
+}
+
+.theme-doc-markdown code {
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+  border: 1px solid rgba(123, 80, 61, 0.18);
+  background: rgba(123, 80, 61, 0.08);
+}
+
+.theme-doc-markdown pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.theme-doc-markdown div[class*='codeBlockContainer'] {
+  border: 1px solid rgba(123, 80, 61, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.theme-doc-markdown table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  border: 1px solid rgba(123, 80, 61, 0.2);
+}
+
+.theme-doc-markdown th,
+.theme-doc-markdown td {
+  border: 1px solid rgba(123, 80, 61, 0.18);
+  padding: 0.55rem 0.7rem;
+}
+
+.theme-doc-markdown th {
+  background: rgba(123, 80, 61, 0.1);
+  text-align: left;
+}
+
+.theme-doc-markdown tr:nth-child(even) td {
+  background: rgba(123, 80, 61, 0.04);
+}
+
+.theme-doc-markdown .admonition {
+  border: 1px solid rgba(123, 80, 61, 0.22);
+  border-left-width: 4px;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+[data-theme='dark'] .theme-doc-markdown h2 {
+  border-bottom-color: rgba(194, 147, 120, 0.32);
+}
+
+[data-theme='dark'] .theme-doc-markdown hr {
+  border-top-color: rgba(194, 147, 120, 0.28);
+}
+
+[data-theme='dark'] .theme-doc-markdown blockquote {
+  border-left-color: rgba(194, 147, 120, 0.48);
+  background: rgba(194, 147, 120, 0.12);
+}
+
+[data-theme='dark'] .theme-doc-markdown code {
+  border-color: rgba(194, 147, 120, 0.35);
+  background: rgba(194, 147, 120, 0.12);
+}
+
+[data-theme='dark'] .theme-doc-markdown div[class*='codeBlockContainer'] {
+  border-color: rgba(194, 147, 120, 0.3);
+}
+
+[data-theme='dark'] .theme-doc-markdown table {
+  border-color: rgba(194, 147, 120, 0.3);
+}
+
+[data-theme='dark'] .theme-doc-markdown th,
+[data-theme='dark'] .theme-doc-markdown td {
+  border-color: rgba(194, 147, 120, 0.25);
+}
+
+[data-theme='dark'] .theme-doc-markdown th {
+  background: rgba(194, 147, 120, 0.15);
+}
+
+[data-theme='dark'] .theme-doc-markdown tr:nth-child(even) td {
+  background: rgba(194, 147, 120, 0.08);
+}
+
+[data-theme='dark'] .theme-doc-markdown .admonition {
+  border-color: rgba(194, 147, 120, 0.3);
+}

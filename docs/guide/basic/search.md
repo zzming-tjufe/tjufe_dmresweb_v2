@@ -1,6 +1,6 @@
 ---
 title: "🔍 高效搜索技巧"
-description: "🔍 高效搜索技巧 page"
+description: "从提炼关键词到 site: 语法与平台选择（Stack Overflow、Issues、官方文档），附中文社区检索与信息甄别。"
 sidebar_position: 3
 ---
 
@@ -12,22 +12,25 @@ sidebar_position: 3
 
 ## 搜索前：如何精确地描述你的问题
 
-糟糕的搜索：“我的Python代码出错了怎么办？”
-良好的搜索：“Python TypeError: ‘list’ object is not callable”
-优秀的搜索：“Python 在循环中修改列表长度导致 IndexError”
+糟糕的搜索：`我的Python代码出错了怎么办？`  
+良好的搜索：`Python TypeError: 'list' object is not callable`  
+优秀的搜索：`Python 在循环中修改列表长度导致 IndexError`
 
 **提炼关键词**：从错误信息、核心概念、技术栈中提取**英文专业术语**，它们通常是打开解决方案大门的钥匙。
 
 ## 搜索中：利用高级搜索语法
 
-### 1. 搜索引擎技巧（以Google为例）
-- **双引号** `“”`：强制精确匹配短语。
-  - 例如：`“ModuleNotFoundError: No module named ‘numpy’”`
-- **减号** `-`：排除特定词汇。
-  - 例如：`python threading -java`（排除Java相关结果）
-- `site:`：限定在特定网站内搜索。
-  - 例如：`site:stackoverflow.com pandas merge`（仅在Stack Overflow搜索）
-- `filetype:`：搜索特定类型文件。
+### 1. 搜索引擎技巧（以 Google / Bing 为例）
+
+若你当前网络环境不便使用某一搜索引擎，可换用其他支持**高级运算符**的引擎（如 Bing、国内可访问的搜索服务）；下面语法在多数引擎中通用或近似。
+
+- **双引号** `""`：强制精确匹配短语。  
+  - 例如：`"ModuleNotFoundError: No module named 'numpy'"`
+- **减号** `-`：排除特定词汇。  
+  - 例如：`python threading -java`（排除 Java 相关结果）
+- **`site:`**：限定在特定网站内搜索。  
+  - 例如：`site:stackoverflow.com pandas merge`（仅在 Stack Overflow 搜索）
+- **`filetype:`**：搜索特定类型文件。  
   - 例如：`filetype:pdf 算法导论`
 
 ### 2. 专业平台优先搜索
@@ -47,5 +50,5 @@ sidebar_position: 3
 
 记住：**你遇到的问题，世界上极大概率已经有人遇到并解决了。** 你的任务就是成为找到那个解决方案的侦探。
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月18日
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日

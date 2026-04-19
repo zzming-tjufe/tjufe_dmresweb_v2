@@ -1,0 +1,320 @@
+/**
+ * 二级页「站内导航」：简洁 Hero + 模块卡片（无一级落地页的强动效封面）。
+ */
+
+:global(:root) {
+  --home-hero-base-a: #f3ede6;
+  --home-hero-base-b: #ebe3d8;
+  --home-hero-base-c: #e4dcd1;
+  --home-hero-title: var(--ifm-heading-color);
+  --home-hero-subtitle: var(--site-text-muted);
+  --home-section-subtitle: var(--site-text-subtle);
+  --home-card-bg: color-mix(in srgb, var(--ifm-background-surface-color) 92%, var(--ifm-color-primary) 8%);
+  --home-card-border: color-mix(in srgb, var(--ifm-color-primary) 16%, transparent);
+  --home-card-border-hover: color-mix(in srgb, var(--ifm-color-primary) 28%, transparent);
+  --home-card-shadow: 0 7px 20px color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
+  --home-card-shadow-hover: 0 10px 26px color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+  --home-card-desc: color-mix(in srgb, var(--ifm-font-color-base) 92%, var(--ifm-color-primary) 8%);
+  --home-card-title: var(--ifm-heading-color);
+  --home-tag-color: var(--site-link-visited-color);
+  --home-tag-bg: color-mix(in srgb, var(--ifm-color-primary) 11%, transparent);
+  --home-tag-border: color-mix(in srgb, var(--ifm-color-primary) 22%, transparent);
+  --home-step-bg: color-mix(in srgb, var(--ifm-background-surface-color) 94%, var(--ifm-color-primary) 6%);
+  --home-step-border: color-mix(in srgb, var(--ifm-color-primary) 14%, transparent);
+  --home-step-shadow: 0 6px 16px color-mix(in srgb, var(--ifm-color-primary) 6%, transparent);
+  --home-step-note: var(--site-text-muted);
+  --home-accent: var(--ifm-color-primary-dark);
+  --home-step-badge-bg: var(--ifm-color-primary);
+  --home-step-link: var(--site-link-color);
+  --home-step-link-hover: var(--site-link-hover-color);
+}
+
+:global([data-theme='dark']) {
+  --home-hero-base-a: #2c2621;
+  --home-hero-base-b: #1f1c19;
+  --home-hero-base-c: #171512;
+  --home-card-bg: color-mix(in srgb, var(--ifm-background-surface-color) 85%, var(--ifm-color-primary) 15%);
+  --home-card-border: color-mix(in srgb, var(--ifm-color-primary) 24%, transparent);
+  --home-card-border-hover: color-mix(in srgb, var(--ifm-color-primary) 42%, transparent);
+  --home-card-shadow: 0 10px 24px color-mix(in srgb, #000 38%, transparent);
+  --home-card-shadow-hover: 0 12px 30px color-mix(in srgb, #000 50%, transparent);
+  --home-card-desc: color-mix(in srgb, var(--ifm-font-color-base) 94%, var(--ifm-color-primary) 6%);
+  --home-card-title: var(--ifm-heading-color);
+  --home-tag-color: color-mix(in srgb, var(--ifm-font-color-base) 92%, var(--ifm-color-primary) 8%);
+  --home-tag-bg: color-mix(in srgb, var(--ifm-color-primary) 25%, transparent);
+  --home-tag-border: color-mix(in srgb, var(--ifm-color-primary) 40%, transparent);
+  --home-step-bg: color-mix(in srgb, var(--ifm-background-surface-color) 88%, var(--ifm-color-primary) 12%);
+  --home-step-border: color-mix(in srgb, var(--ifm-color-primary) 24%, transparent);
+  --home-step-shadow: 0 10px 24px color-mix(in srgb, #000 40%, transparent);
+  --home-accent: var(--ifm-color-primary-light);
+  --home-step-badge-bg: var(--ifm-color-primary-dark);
+}
+
+.heroBanner {
+  padding: 4.5rem 0 3.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    165deg,
+    var(--home-hero-base-a) 0%,
+    var(--home-hero-base-b) 46%,
+    var(--home-hero-base-c) 100%
+  );
+}
+
+.heroReveal {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--reveal-color);
+  clip-path: circle(var(--reveal-radius) at var(--reveal-x) var(--reveal-y));
+  transition: clip-path 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 1;
+}
+
+.heroTitle {
+  margin-bottom: 0.8rem;
+  font-size: 2.2rem;
+  color: var(--home-hero-title);
+}
+
+.heroSubtitle {
+  margin-inline: auto;
+  color: var(--home-hero-subtitle);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.heroButtons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroPrimaryBtn {
+  background: var(--ifm-color-primary) !important;
+  border-color: var(--ifm-color-primary) !important;
+  color: var(--site-on-primary) !important;
+}
+
+.heroPrimaryBtn:hover {
+  background: var(--ifm-color-primary-dark) !important;
+  border-color: var(--ifm-color-primary-dark) !important;
+  color: var(--site-on-primary) !important;
+}
+
+.heroSecondaryBtn {
+  background: color-mix(in srgb, var(--ifm-color-primary) 10%, var(--ifm-background-color)) !important;
+  color: var(--ifm-font-color-base) !important;
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 28%, transparent) !important;
+}
+
+.heroSecondaryBtn:hover {
+  background: color-mix(in srgb, var(--ifm-color-primary) 18%, var(--ifm-background-color)) !important;
+  color: var(--ifm-font-color-base) !important;
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 42%, transparent) !important;
+}
+
+.section {
+  margin: 2.25rem 0;
+}
+
+.sectionHeader {
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+  color: var(--ifm-heading-color);
+}
+
+.sectionSubtitle {
+  margin: 0;
+  color: var(--home-section-subtitle);
+}
+
+.cardCol {
+  margin-bottom: 1rem;
+}
+
+.card {
+  display: block;
+  height: 100%;
+  padding: 1.1rem 1.1rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--home-card-border);
+  background: var(--home-card-bg);
+  text-decoration: none !important;
+  color: inherit !important;
+  box-shadow: var(--home-card-shadow);
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.card:link,
+.card:visited {
+  color: inherit !important;
+}
+
+.card:hover,
+.card:active,
+.card:focus,
+.card:focus-visible {
+  color: inherit !important;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--home-card-border-hover);
+  box-shadow: var(--home-card-shadow-hover);
+  text-decoration: none !important;
+}
+
+.cardHeader {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--home-card-title) !important;
+}
+
+.card h3,
+.card h3:link,
+.card h3:visited,
+.card h3:hover,
+.card h3:active,
+.card h3:focus,
+.card h3:focus-visible {
+  color: var(--home-card-title) !important;
+  text-decoration: none !important;
+}
+
+.cardTags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--home-tag-color);
+  background: var(--home-tag-bg);
+  border: 1px solid var(--home-tag-border);
+}
+
+.cardDesc {
+  margin: 0.65rem 0 0.9rem;
+  color: var(--home-card-desc);
+  line-height: 1.7;
+  text-decoration: none !important;
+}
+
+.cardAction {
+  color: var(--home-accent);
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.step {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--home-step-border);
+  background: var(--home-step-bg);
+  box-shadow: var(--home-step-shadow);
+  text-decoration: none !important;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    border-color 140ms ease,
+    background-color 140ms ease;
+}
+
+.step:hover,
+.step:focus,
+.step:focus-visible,
+.step:active {
+  text-decoration: none !important;
+  transform: translateY(-1px);
+  border-color: var(--home-card-border-hover);
+  box-shadow: var(--home-card-shadow-hover);
+}
+
+.stepBadge {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--site-on-primary);
+  background: var(--home-step-badge-bg);
+  font-weight: 700;
+  flex: 0 0 32px;
+}
+
+.stepBody {
+  min-width: 0;
+}
+
+.stepTitle {
+  font-weight: 700;
+  text-decoration: none !important;
+  color: var(--home-step-link) !important;
+}
+
+.stepTitle:hover {
+  text-decoration: none !important;
+  color: var(--home-step-link-hover) !important;
+}
+
+.stepBody a,
+.stepBody a:link,
+.stepBody a:visited,
+.stepBody a:hover,
+.stepBody a:active,
+.stepBody a:focus,
+.stepBody a:focus-visible {
+  color: var(--home-step-link) !important;
+  text-decoration: none !important;
+}
+
+.stepBody a:hover,
+.stepBody a:active,
+.stepBody a:focus,
+.stepBody a:focus-visible {
+  color: var(--home-step-link-hover) !important;
+}
+
+.stepNote {
+  margin-top: 0.2rem;
+  color: var(--home-step-note);
+}

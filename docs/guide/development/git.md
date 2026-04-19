@@ -1,7 +1,7 @@
 ---
 title: "Git 入门指南（面向大一新生）"
-description: "Git 入门指南（面向大一新生） page"
-sidebar_position: 3
+description: "Git 安装、仓库初始化、提交与分支协作；覆盖 Windows / macOS / Linux 与常用命令速查。"
+sidebar_position: 4
 ---
 
 # Git 入门指南（面向大一新生）
@@ -327,5 +327,5 @@ git reset --hard HEAD~1    # 谨慎使用！会丢失最近一次提交的所有
 
 ---
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月17日
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日

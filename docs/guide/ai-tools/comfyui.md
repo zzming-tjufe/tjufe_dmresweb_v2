@@ -1,6 +1,6 @@
 ---
 title: "ComfyUI 新生入门指南"
-description: "ComfyUI 新生入门指南 page"
+description: "从安装到首图：Anaconda 分显卡（NVIDIA / AMD DirectML / Intel DirectML）配置、基础节点工作流与 CosyVoice 类 TTS 插件入门。"
 sidebar_position: 1
 ---
 
@@ -134,6 +134,7 @@ pause
 ```bash
 conda create -n comfy_nvidia python=3.11 -y
 conda activate comfy_nvidia
+# CUDA 轮子版本请以 PyTorch 官网与 ComfyUI README 为准；以下为 CUDA 12.1 示例。
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements.txt
 ```
@@ -176,9 +177,9 @@ pause
 
 ---
 
-## 五、安装 CosyVoice 插件（语音生成）
+## 五、安装 CosyVoice 类 TTS 插件（语音生成）
 
-CosyVoice 是一个基于 ComfyUI 的 TTS（文本转语音）插件，适合制作 AI 视频配音。
+社区里有多套 **CosyVoice × ComfyUI** 的适配仓库，节点命名与模型下载方式会随仓库更新而变化；安装前请**以所选仓库的 README 为准**。下面以维护较活跃、文档较全的一套为例（若链接失效，在 GitHub 搜索 `CosyVoice ComfyUI` 替换即可）。
 
 ### 安装步骤（适用于 AMD / Intel / NVIDIA）
 
@@ -190,27 +191,27 @@ CosyVoice 是一个基于 ComfyUI 的 TTS（文本转语音）插件，适合制
    ```bash
    cd D:\ComfyUI\custom_nodes
    ```
-3. 克隆插件仓库：
+3. 克隆插件仓库（示例）：
    ```bash
-   git clone https://github.com/Plachtaa/ComfyUI-CosyVoice.git
+   git clone https://github.com/AIFSH/CosyVoice-ComfyUI.git
    ```
 4. 安装依赖：
    ```bash
-   cd ComfyUI-CosyVoice
+   cd CosyVoice-ComfyUI
    pip install -r requirements.txt
    ```
 
 > ⚠️ **注意**：  
-> - 所有 GPU 类型均可使用 CosyVoice，因其推理主要依赖 CPU  
+> - 推理负载与是否走 GPU 取决于具体节点实现与模型，请按仓库说明准备 **FFmpeg**、权重下载方式等。  
 > - 若报错缺少 `torchaudio`，执行：`pip install torchaudio`
 
 ### 使用方法
 1. 重启 ComfyUI（重新运行对应 `.bat` 脚本）
-2. 在节点菜单中找到 **CosyVoice** → **CosyVoiceLoader** 和 **CosyVoiceTTS**
-3. 首次使用会自动下载约 2GB 的 `CosyVoice-300M` 模型到 `ComfyUI/models/CosyVoice/`
-4. 输入文本，选择音色（如 `中文女声`），点击生成即可输出 `.wav` 音频
+2. 在节点菜单中按**该仓库文档**查找 CosyVoice 相关节点（名称可能为 Loader / TTS 等，与旧版「CosyVoiceLoader」不一定一致）
+3. 模型体积与下载路径以仓库说明为准（常见为首次运行自动拉取或需手动放置到指定目录）
+4. 按节点面板选择文本、音色等参数，生成 `.wav` 或其他音频格式
 
-> 🎧 输出音频默认保存在 `ComfyUI/output/` 文件夹
+> 🎧 输出音频默认多保存在 `ComfyUI/output/`（具体见节点或工作流配置）
 
 ---
 
@@ -255,5 +256,5 @@ A：标准路径：
 - 学习使用 **Lora** 和 **ControlNet** 节点提升控制力
 - 安装 **ComfyUI Manager** 插件（通过 custom_nodes 安装，一键管理插件）
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月17日
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日（修订：CosyVoice 插件仓库与节点名以社区当前 README 为准；NVIDIA 侧 PyTorch/CUDA 索引请以 PyTorch 与 ComfyUI 官方说明为准。）

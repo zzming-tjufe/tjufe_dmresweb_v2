@@ -1,12 +1,12 @@
 ---
 title: "Markdown入门指南（面向大一新生）"
-description: "Markdown入门指南（面向大一新生） page"
+description: "Markdown 语法速查与写作习惯；附数学公式与 LaTeX 入门指引。适用于 GitHub、Obsidian、VS Code 及本站 Docusaurus 文档。"
 sidebar_position: 1
 ---
 
 # Markdown入门指南（面向大一新生）
 
-欢迎来到 Markdown 与 LaTeX 的世界！本指南专为数管大一新生编写，帮助你快速掌握在学术写作、笔记整理和文档排版中常用的两种轻量级标记语言：**Markdown**（用于日常文档）和 **LaTeX**（用于数学公式与科技排版）。你将在许多课程平台（如 GitHub、GitLab、Obsidian、Typora、Docsify 等）中频繁使用它们。
+欢迎来到 Markdown 与 LaTeX 的世界！本指南专为数管大一新生编写，帮助你快速掌握在学术写作、笔记整理和文档排版中常用的两种轻量级标记语言：**Markdown**（用于日常文档）和 **LaTeX**（用于数学公式与科技排版）。你将在许多课程平台（如 GitHub、GitLab、Obsidian、Typora、VS Code 以及**本站所用的 Docusaurus**）中频繁使用它们。
 
 ---
 
@@ -187,13 +187,22 @@ def hello():
 
 ---
 
+### 11. 数学公式（LaTeX 简介）
+
+许多技术文档与课件会用 LaTeX 写公式。你在 Markdown 里常见两种写法（**是否生效取决于渲染器**，例如 GitHub、Obsidian、或启用数学插件的站点）：
+
+- **行内公式**：`$E = mc^2$`
+- **独立一行**：上下各一行 `$$`，中间写 LaTeX，例如分数、积分、矩阵等。
+
+系统学习排版可配合 [Overleaf](https://www.overleaf.com/) 等在线 LaTeX 编辑器；课程若要求交 `.tex` 或幻灯片，以任课教师模板为准。
+
+---
 
 ## 二、实用建议
 
 1. **编辑器推荐**：
-   - 在线：Typora Web、StackEdit、Obsidian（桌面端）
-   - 本地：Typora（付费）、MarkText（免费开源）、VS Code + Markdown Preview Enhanced
-
+   - 在线：StackEdit、HackMD 等
+   - 本地：**Obsidian**、**MarkText**（开源）、**VS Code** + Markdown 预览类扩展、Typora（付费，按个人预算选择）
 
 2. **练习方法**：
    - 用 Markdown 写课堂笔记
@@ -201,5 +210,5 @@ def hello():
 
 ---
 
-> 本指南由居居明维护，如有疑问请联系：`zzming2019@hotmail.com`  
-> 最后更新：2026年1月15日
+> 本指南由zzming-tjufe维护，如有疑问请联系：`zzming2019@hotmail.com`  
+> 最后更新：2026年4月19日

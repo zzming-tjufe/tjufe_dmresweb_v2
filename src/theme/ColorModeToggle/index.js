@@ -1,6 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
+import {useLocation} from '@docusaurus/router';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {useThemeTransition} from '../ThemeTransitionContext';
+import {isLandingHomePathname} from '@site/src/utils/isLandingHome';
 
 function getLabel(value) {
   return value === 'dark' ? '切换到浅色模式' : '切换到深色模式';
@@ -8,6 +11,15 @@ function getLabel(value) {
 
 export default function ColorModeToggle({className, value, onChange}) {
   const {runThemeTransition} = useThemeTransition();
+  const {pathname} = useLocation();
+  const {
+    siteConfig: {baseUrl},
+  } = useDocusaurusContext();
+
+  if (isLandingHomePathname(pathname, baseUrl)) {
+    return null;
+  }
+
   const nextMode = value === 'dark' ? 'light' : 'dark';
 
   return (
