@@ -9,7 +9,7 @@ sidebar_position: 1
 
 ## 我的代码仓库
 虽然无法直接嵌入动态页面，但你可以通过以下链接访问我的主页，查看我的其他项目和贡献记录：  
-**GitHub**: `https://github.com/MrDinO-0611/tjufe_dmres_web`  
+**GitHub**: `https://github.com/zzming-tjufe/tjufe_dmresweb_v2`  
 **GitLab**: `https://gitlab.drcheng.group/zhouzeming/dm_res_web_test/-/tree/main?ref_type=heads`
 
 **欢迎反馈与协作**：

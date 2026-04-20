@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mrdino-0611.github.io/tjufe_dmres_web/sitemap.xml

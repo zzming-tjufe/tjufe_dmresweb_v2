@@ -22,14 +22,14 @@ const config = {
   url: 'https://mrdino-0611.github.io',
   baseUrl: '/tjufe_dmres_web/',
 
-  organizationName: 'MrDinO-0611',
-  projectName: 'tjufe_dmres_web',
+  organizationName: 'zzming-tjufe',
+  projectName: 'tjufe_dmresweb_v2',
   trailingSlash: false,
 
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
   markdown: {
     hooks: {
-      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownLinks: 'throw',
     },
   },
 
@@ -46,9 +46,16 @@ const config = {
           path: 'docs',
           routeBasePath: 'docs',
           sidebarPath: './sidebars.js',
+          editUrl: 'https://github.com/zzming-tjufe/tjufe_dmresweb_v2/tree/main/',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
           exclude: ['**/_sidebar.md', '**/_coverpage.md', '**/index.html', '**/scripts/**'],
         },
         blog: false,
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -56,7 +63,33 @@ const config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        indexDocs: true,
+        indexBlog: false,
+        indexPages: true,
+        language: ['zh'],
+        docsRouteBasePath: '/docs',
+        removeDefaultStemmer: true,
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+      },
+    ],
+  ],
+
   themeConfig: {
+    image: 'img/examples/校徽.jpg',
+    metadata: [
+      {name: 'description', content: '天财数管资源站：面向新生与进阶学习者的文档资源站。'},
+      {property: 'og:type', content: 'website'},
+      {property: 'og:site_name', content: '天财数管资源站'},
+      {property: 'og:locale', content: 'zh_CN'},
+      {name: 'twitter:card', content: 'summary_large_image'},
+      {name: 'twitter:title', content: '天财数管资源站'},
+      {name: 'twitter:description', content: '面向新生与进阶学习者的文档资源站。'},
+    ],
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
@@ -82,9 +115,10 @@ const config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/MrDinO-0611/tjufe_dmres_web',
-          label: 'GitHub',
+          href: 'https://github.com/zzming-tjufe/tjufe_dmresweb_v2',
           position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub 仓库',
         },
       ],
     },
@@ -102,11 +136,24 @@ const config = {
           ],
         },
         {
+          title: '反馈',
+          items: [
+            {
+              label: '提交问题',
+              href: 'https://github.com/zzming-tjufe/tjufe_dmresweb_v2/issues/new/choose',
+            },
+            {
+              label: '参与编辑',
+              href: 'https://github.com/zzming-tjufe/tjufe_dmresweb_v2',
+            },
+          ],
+        },
+        {
           title: '社区',
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/MrDinO-0611/tjufe_dmres_web',
+              href: 'https://github.com/zzming-tjufe/tjufe_dmresweb_v2',
             },
           ],
         },

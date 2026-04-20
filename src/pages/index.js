@@ -11,14 +11,19 @@ const MOVE_SPEED = 260;
 const MAX_TRAIL_PX = 200;
 /** 退场时拖尾末端追向星点的速度倍率（>1 才能快过星点） */
 const EXIT_CATCH_MULT = 2.05;
-/** 在网格交点尝试 90° 转弯的概率 */
-const TURN_PROB = 0.36;
+
+const TRAIL_X_POS =
+  'linear-gradient(to right, transparent 0%, rgba(79, 209, 197, 0.06) 50%, rgba(79, 209, 197, 0.32) 100%)';
+const TRAIL_X_NEG =
+  'linear-gradient(to left, transparent 0%, rgba(79, 209, 197, 0.06) 50%, rgba(79, 209, 197, 0.32) 100%)';
+const TRAIL_Y_POS =
+  'linear-gradient(to bottom, transparent 0%, rgba(79, 209, 197, 0.06) 50%, rgba(79, 209, 197, 0.32) 100%)';
+const TRAIL_Y_NEG =
+  'linear-gradient(to top, transparent 0%, rgba(79, 209, 197, 0.06) 50%, rgba(79, 209, 197, 0.32) 100%)';
 
 /**
  * @param {HTMLElement | null} trailEl
  * @param {HTMLElement | null} starWrap
- * @param {number} w
- * @param {number} h
  * @param {number} xPx
  * @param {number} yPx
  * @param {number} vx
@@ -26,7 +31,7 @@ const TURN_PROB = 0.36;
  * @param {number} legStartX
  * @param {number} legStartY
  */
-function applyLightStyles(trailEl, starWrap, w, h, xPx, yPx, vx, vy, legStartX, legStartY) {
+function applyLightStyles(trailEl, starWrap, xPx, yPx, vx, vy, legStartX, legStartY) {
   if (!starWrap) return;
 
   starWrap.style.left = `${xPx}px`;
@@ -53,10 +58,7 @@ function applyLightStyles(trailEl, starWrap, w, h, xPx, yPx, vx, vy, legStartX, 
       trailEl.style.width = `${width}px`;
       trailEl.style.height = '2px';
       trailEl.style.transform = 'none';
-      trailEl.style.background =
-        vx >= 0
-          ? 'linear-gradient(to right, transparent 0%, rgba(79, 209, 197, 0.06) 50%, rgba(79, 209, 197, 0.32) 100%)'
-          : 'linear-gradient(to left, transparent 0%, rgba(79, 209, 197, 0.06) 50%, rgba(79, 209, 197, 0.32) 100%)';
+      trailEl.style.background = vx >= 0 ? TRAIL_X_POS : TRAIL_X_NEG;
     }
   } else {
     let effLeg = legStartY;
@@ -74,10 +76,7 @@ function applyLightStyles(trailEl, starWrap, w, h, xPx, yPx, vx, vy, legStartX, 
       trailEl.style.width = '2px';
       trailEl.style.height = `${height}px`;
       trailEl.style.transform = 'none';
-      trailEl.style.background =
-        vy >= 0
-          ? 'linear-gradient(to bottom, transparent 0%, rgba(79, 209, 197, 0.06) 50%, rgba(79, 209, 197, 0.32) 100%)'
-          : 'linear-gradient(to top, transparent 0%, rgba(79, 209, 197, 0.06) 50%, rgba(79, 209, 197, 0.32) 100%)';
+      trailEl.style.background = vy >= 0 ? TRAIL_Y_POS : TRAIL_Y_NEG;
     }
   }
 }
@@ -95,22 +94,18 @@ function trailFullyOutsideViewport(legStartX, xPx, legStartY, yPx, vx, vy, w, h)
   return hi <= 0 || lo >= h;
 }
 
-/** 一级落地页：四角星 + 网格拖尾，可 90° 转弯；出界后等拖尾离开再刷新 */
+/** 一级落地页：四角星 + 网格拖尾，固定四向循环直行；出界后等拖尾离开再刷新 */
 export default function LandingPage() {
   const heroRef = useRef(null);
   const trailRef = useRef(null);
   const starWrapRef = useRef(null);
+  const cycleRef = useRef(0);
 
   useEffect(() => {
-    const root = document.documentElement;
-    const prev = root.getAttribute('data-theme');
-    root.setAttribute('data-theme', 'dark');
+    // 仅做首页专属外观类，不直接改全站 data-theme，避免与 Docusaurus 主题机制冲突。
     document.body.classList.add('landing-ragflow-theme');
     return () => {
       document.body.classList.remove('landing-ragflow-theme');
-      if (prev === 'light' || prev === 'dark') {
-        root.setAttribute('data-theme', prev);
-      }
     };
   }, []);
 
@@ -129,11 +124,16 @@ export default function LandingPage() {
       const r = hero.getBoundingClientRect();
       const ix = Math.max(0, Math.floor(r.width / GRID_CELL / 2)) * GRID_CELL;
       const iy = Math.max(0, Math.floor((r.height * 3) / 4 / GRID_CELL)) * GRID_CELL;
-      applyLightStyles(trailEl, starWrap, r.width, r.height, ix, iy, 0, 0, ix, iy);
+      applyLightStyles(trailEl, starWrap, ix, iy, 0, 0, ix, iy);
       if (trailEl) trailEl.style.opacity = '0';
       return;
     }
 
+    /** 场景尺寸缓存，避免每帧 getBoundingClientRect 引发卡顿 */
+    let w = 0;
+    let h = 0;
+    let maxIx = 1;
+    let maxIy = 1;
     let xPx = 0;
     let yPx = 0;
     let vx = MOVE_SPEED;
@@ -149,48 +149,48 @@ export default function LandingPage() {
     let rafId = 0;
     let cancelled = false;
 
-    function dims() {
+    function updateStage() {
       const r = hero.getBoundingClientRect();
-      return {
-        w: r.width,
-        h: r.height,
-        maxIx: Math.max(1, Math.floor(r.width / GRID_CELL)),
-        maxIy: Math.max(1, Math.floor(r.height / GRID_CELL)),
-      };
+      w = r.width;
+      h = r.height;
+      maxIx = Math.max(1, Math.floor(r.width / GRID_CELL));
+      maxIy = Math.max(1, Math.floor(r.height / GRID_CELL));
     }
 
-    /** 光点与拖尾一定从四条边之一进入，速度指向场内 */
+    /** 光点与拖尾从四条边按固定周期进入，速度指向场内 */
     function refresh() {
-      const {w, h, maxIx, maxIy} = dims();
       if (w < 16 || h < 16) return;
 
-      const edge = Math.floor(Math.random() * 4);
+      const edge = cycleRef.current % 4;
+      cycleRef.current += 1;
       const maxGridX = maxIx * GRID_CELL;
       const maxGridY = maxIy * GRID_CELL;
+      const centerIx = Math.floor(maxIx / 2);
+      const centerIy = Math.floor(maxIy / 2);
 
       if (edge === 0) {
-        const iy = Math.floor(Math.random() * (maxIy + 1));
+        const iy = centerIy;
         lockedY = Math.min(iy * GRID_CELL, maxGridY, h);
         xPx = 0;
         yPx = lockedY;
         vx = MOVE_SPEED;
         vy = 0;
       } else if (edge === 1) {
-        const iy = Math.floor(Math.random() * (maxIy + 1));
-        lockedY = Math.min(iy * GRID_CELL, maxGridY, h);
-        xPx = Math.min(maxGridX, w);
-        yPx = lockedY;
-        vx = -MOVE_SPEED;
-        vy = 0;
-      } else if (edge === 2) {
-        const ix = Math.floor(Math.random() * (maxIx + 1));
+        const ix = centerIx;
         lockedX = Math.min(ix * GRID_CELL, maxGridX, w);
         xPx = lockedX;
         yPx = 0;
         vx = 0;
         vy = MOVE_SPEED;
+      } else if (edge === 2) {
+        const iy = centerIy;
+        lockedY = Math.min(iy * GRID_CELL, maxGridY, h);
+        xPx = Math.min(maxGridX, w);
+        yPx = lockedY;
+        vx = -MOVE_SPEED;
+        vy = 0;
       } else {
-        const ix = Math.floor(Math.random() * (maxIx + 1));
+        const ix = centerIx;
         lockedX = Math.min(ix * GRID_CELL, maxGridX, w);
         xPx = lockedX;
         yPx = Math.min(maxGridY, h);
@@ -203,73 +203,8 @@ export default function LandingPage() {
       exiting = false;
     }
 
-    /**
-     * 在网格交点 (x,y) 随机尝试 90° 或保持直行；禁止 180°（当前向量的反向）。
-     */
-    function tryTurnAtIntersection(x, y) {
-      const {w, h} = dims();
-      /** @type {{vx: number; vy: number}[]} */
-      let cand = [];
-
-      if (Math.abs(vy) < 0.001) {
-        if (vx > 0) {
-          cand = [
-            {vx: MOVE_SPEED, vy: 0},
-            {vx: 0, vy: -MOVE_SPEED},
-            {vx: 0, vy: MOVE_SPEED},
-          ];
-        } else {
-          cand = [
-            {vx: -MOVE_SPEED, vy: 0},
-            {vx: 0, vy: -MOVE_SPEED},
-            {vx: 0, vy: MOVE_SPEED},
-          ];
-        }
-      } else {
-        if (vy > 0) {
-          cand = [
-            {vx: 0, vy: MOVE_SPEED},
-            {vx: MOVE_SPEED, vy: 0},
-            {vx: -MOVE_SPEED, vy: 0},
-          ];
-        } else {
-          cand = [
-            {vx: 0, vy: -MOVE_SPEED},
-            {vx: MOVE_SPEED, vy: 0},
-            {vx: -MOVE_SPEED, vy: 0},
-          ];
-        }
-      }
-
-      const filtered = cand.filter((c) => {
-        const tx = x + Math.sign(c.vx) * GRID_CELL * 0.25;
-        const ty = y + Math.sign(c.vy) * GRID_CELL * 0.25;
-        return tx >= -4 && tx <= w + 4 && ty >= -4 && ty <= h + 4;
-      });
-      if (filtered.length === 0) return false;
-      if (Math.random() > TURN_PROB) return false;
-
-      const c = filtered[Math.floor(Math.random() * filtered.length)];
-      xPx = x;
-      yPx = y;
-      if (c.vx === vx && c.vy === vy) {
-        return false;
-      }
-      vx = c.vx;
-      vy = c.vy;
-      legStartX = x;
-      legStartY = y;
-      if (Math.abs(vy) < 0.001) {
-        lockedY = y;
-      } else {
-        lockedX = x;
-      }
-      return true;
-    }
-
     function tick(now) {
       if (cancelled) return;
-      const {w, h} = dims();
       const dt = Math.min(0.032, Math.max(0, (now - lastT) / 1000));
       lastT = now;
 
@@ -289,7 +224,7 @@ export default function LandingPage() {
         if (trailFullyOutsideViewport(legStartX, xPx, legStartY, yPx, vx, vy, w, h)) {
           refresh();
         }
-        applyLightStyles(trailEl, starWrap, w, h, xPx, yPx, vx, vy, legStartX, legStartY);
+        applyLightStyles(trailEl, starWrap, xPx, yPx, vx, vy, legStartX, legStartY);
         rafId = requestAnimationFrame(tick);
         return;
       }
@@ -309,33 +244,17 @@ export default function LandingPage() {
         exiting = true;
         xPx = nx;
         yPx = ny;
-        applyLightStyles(trailEl, starWrap, w, h, xPx, yPx, vx, vy, legStartX, legStartY);
+        applyLightStyles(trailEl, starWrap, xPx, yPx, vx, vy, legStartX, legStartY);
         rafId = requestAnimationFrame(tick);
         return;
       }
 
       if (Math.abs(vy) < 0.001) {
         yPx = lockedY;
-        const oix = Math.floor(ox / GRID_CELL);
-        const nix = Math.floor(nx / GRID_CELL);
-        if (nix !== oix) {
-          const lineX = vx > 0 ? (oix + 1) * GRID_CELL : oix * GRID_CELL;
-          xPx = Math.min(Math.max(lineX, 0), w);
-          tryTurnAtIntersection(xPx, yPx);
-        } else {
-          xPx = nx;
-        }
+        xPx = nx;
       } else {
         xPx = lockedX;
-        const oiy = Math.floor(oy / GRID_CELL);
-        const niy = Math.floor(ny / GRID_CELL);
-        if (niy !== oiy) {
-          const lineY = vy > 0 ? (oiy + 1) * GRID_CELL : oiy * GRID_CELL;
-          yPx = Math.min(Math.max(lineY, 0), h);
-          tryTurnAtIntersection(xPx, yPx);
-        } else {
-          yPx = ny;
-        }
+        yPx = ny;
       }
 
       if (Math.abs(vy) < 0.001) {
@@ -348,21 +267,21 @@ export default function LandingPage() {
         yPx = Math.min(Math.max(yPx, 0), h);
       }
 
-      applyLightStyles(trailEl, starWrap, w, h, xPx, yPx, vx, vy, legStartX, legStartY);
+      applyLightStyles(trailEl, starWrap, xPx, yPx, vx, vy, legStartX, legStartY);
       rafId = requestAnimationFrame(tick);
     }
 
     const ro = new ResizeObserver(() => {
+      updateStage();
       refresh();
-      const {w, h} = dims();
-      applyLightStyles(trailEl, starWrap, w, h, xPx, yPx, vx, vy, legStartX, legStartY);
+      applyLightStyles(trailEl, starWrap, xPx, yPx, vx, vy, legStartX, legStartY);
     });
     ro.observe(hero);
 
+    updateStage();
     refresh();
-    const {w, h} = dims();
-    applyLightStyles(trailEl, starWrap, w, h, xPx, yPx, vx, vy, legStartX, legStartY);
-    rafId = requestAnimationFrame(tick);
+    applyLightStyles(trailEl, starWrap, xPx, yPx, vx, vy, legStartX, legStartY);
+    rafId = requestAnimationFrame(() => requestAnimationFrame(tick));
 
     return () => {
       cancelled = true;
@@ -384,26 +303,30 @@ export default function LandingPage() {
             </div>
           </div>
           <div className={styles.inner}>
-            <p className={styles.kicker}>文档 · 工具 · 共建</p>
-            <h1 className={styles.title}>
-              为学习与工具实践
-              <br />
-              构建<span className={styles.titleAccent}> 更可信的资源导航</span>
-            </h1>
-            <p className={styles.sub}>
-              面向新生的开源工具、生成式 AI、网络与方法论导航。从总览进入文档，或在站内导航里按模块直达。
-            </p>
-            <div className={styles.actions}>
-              <Link className={clsx('button button--lg', styles.primaryBtn)} to="/docs">
-                开始阅读
-              </Link>
-              <Link className={clsx('button button--lg', styles.secondaryBtn)} to="/home">
-                站内导航
-              </Link>
+            <div className={styles.splitHero}>
+              <section className={styles.leftPane}>
+                <h1 className={styles.leftTitle}>天财数管资源站</h1>
+                <p className={styles.leftSub}>
+                  面向新生的开源工具、生成式 AI、网络与方法论导航。从总览进入文档，或在站内导航里按模块直达。
+                </p>
+              </section>
+              <div className={styles.divider} aria-hidden />
+              <section className={styles.rightPane}>
+                <h2 className={styles.rightTitle}>
+                  为学习与工具实践
+                  <br />
+                  构建<span className={styles.titleAccent}> 更可信的资源导航</span>
+                </h2>
+                <div className={styles.rightActions}>
+                  <Link className={clsx('button button--lg', styles.primaryBtn)} to="/docs">
+                    开始阅读
+                  </Link>
+                  <Link className={clsx('button button--lg', styles.secondaryBtn)} to="/home">
+                    站内导航
+                  </Link>
+                </div>
+              </section>
             </div>
-            <p className={styles.hint}>
-              需要按章节浏览时使用顶部 <code>文档</code>；快速进模块卡片请打开 <code>站内导航</code>。
-            </p>
           </div>
         </header>
       </div>
