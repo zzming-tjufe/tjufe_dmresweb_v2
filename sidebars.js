@@ -42,7 +42,13 @@ const sidebars = {
     {
       type: 'category',
       label: '关于与贡献',
-      items: ['about/dm2501jjm', 'about/record', 'about/mdx-migration-guide'],
+      items: [
+        'about/dm2501jjm',
+        'about/record',
+        'about/mdx-migration-guide',
+        'about/ui-style-guide',
+        'about/viewport-regression-matrix',
+      ],
     },
   ],
 };

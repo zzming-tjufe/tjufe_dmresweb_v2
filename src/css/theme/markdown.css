@@ -3,6 +3,15 @@
   font-size: 1.03rem;
   line-height: 1.9;
   color: var(--ifm-font-color-base);
+  text-rendering: optimizeLegibility;
+}
+
+.theme-doc-markdown :where(p, li) {
+  max-width: 72ch;
+}
+
+.theme-doc-markdown :where(h1, h2, h3, h4) {
+  max-width: 72ch;
 }
 
 .theme-doc-markdown > * + * {
@@ -15,7 +24,7 @@
 .theme-doc-markdown h4 {
   color: var(--ifm-heading-color);
   line-height: 1.35;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
   margin-top: 2rem;
   margin-bottom: 0.7rem;
 }
@@ -30,6 +39,17 @@
   font-weight: 700;
   padding-bottom: 0.35rem;
   border-bottom: 1px solid rgba(123, 80, 61, 0.2);
+}
+
+/* 让标题锚点更可发现 */
+.theme-doc-markdown :where(h2, h3, h4) a.hash-link {
+  opacity: 0.55;
+  transition: opacity var(--site-motion-fast) var(--site-ease-out);
+}
+
+.theme-doc-markdown :where(h2, h3, h4):hover a.hash-link,
+.theme-doc-markdown :where(h2, h3, h4) a.hash-link:focus-visible {
+  opacity: 1;
 }
 
 .theme-doc-markdown h3 {
@@ -75,6 +95,7 @@
   border-radius: 6px;
   border: 1px solid rgba(123, 80, 61, 0.18);
   background: rgba(123, 80, 61, 0.08);
+  font-family: var(--ifm-font-family-monospace);
 }
 
 .theme-doc-markdown pre code {
@@ -87,6 +108,22 @@
   border: 1px solid rgba(123, 80, 61, 0.2);
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
+}
+
+.theme-doc-markdown div[class*='codeBlockTitle'] {
+  background: color-mix(in srgb, var(--ifm-color-primary) 8%, var(--ifm-background-color));
+  border-bottom: 1px solid rgba(123, 80, 61, 0.18);
+}
+
+/* 复制按钮更清晰 */
+.theme-doc-markdown button[class*='copyButton'] {
+  border-radius: 10px !important;
+  transition: transform var(--site-motion-fast) var(--site-ease-out), opacity var(--site-motion-fast) var(--site-ease-out);
+}
+
+.theme-doc-markdown button[class*='copyButton']:hover {
+  transform: translateY(calc(var(--site-lift-1) * -1));
 }
 
 .theme-doc-markdown table {
@@ -139,6 +176,7 @@
 
 [data-theme='dark'] .theme-doc-markdown div[class*='codeBlockContainer'] {
   border-color: rgba(194, 147, 120, 0.3);
+  box-shadow: 0 18px 46px color-mix(in srgb, #000 55%, transparent);
 }
 
 [data-theme='dark'] .theme-doc-markdown table {

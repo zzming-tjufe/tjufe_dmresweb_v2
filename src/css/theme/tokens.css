@@ -3,6 +3,10 @@
  * 首页模块卡片等通过 color-mix(..., var(--ifm-color-primary), ...) 自动跟随。
  */
 :root {
+  --ifm-font-family-base: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", "DengXian", sans-serif;
+  --ifm-font-family-monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
   --ifm-color-primary: #8a5a44;
   --ifm-color-primary-dark: #7b503d;
   --ifm-color-primary-darker: #734b39;
@@ -39,6 +43,21 @@
   /** 次要说明文字 */
   --site-text-muted: #5a5249;
   --site-text-subtle: #5c554d;
+
+  /** 交互与可访问性（全站统一） */
+  --site-focus-ring: color-mix(in srgb, var(--ifm-color-primary) 85%, transparent);
+  --site-focus-ring-offset: 2px;
+  --site-focus-shadow: 0 0 0 4px color-mix(in srgb, var(--ifm-color-primary) 22%, transparent);
+
+  /** 动效节奏（全站统一） */
+  --site-motion-fast: 120ms;
+  --site-motion-base: 180ms;
+  --site-motion-slow: 260ms;
+  --site-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /** 轻微位移（hover/active 一致） */
+  --site-lift-1: 1px;
+  --site-lift-2: 2px;
 }
 
 [data-theme='dark'] {
@@ -72,10 +91,12 @@
   --site-on-primary: #1f1c19;
   --site-text-muted: #cec2b4;
   --site-text-subtle: #c6b8a8;
+
+  --site-focus-shadow: 0 0 0 4px color-mix(in srgb, var(--ifm-color-primary) 18%, transparent);
 }
 
 body {
-  font-family: "DengXian", "Microsoft YaHei", "PingFang SC", "SimSun", "Times New Roman", serif;
+  font-family: var(--ifm-font-family-base);
 }
 
 /* 页脚与主题配置中的 style 一致，避免与全站暖色脱节 */

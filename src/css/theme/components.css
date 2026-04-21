@@ -21,7 +21,7 @@
   );
   transform: scale(0.5);
   opacity: 0;
-  transition: transform 180ms ease, opacity 180ms ease;
+  transition: transform var(--site-motion-base) var(--site-ease-out), opacity var(--site-motion-base) var(--site-ease-out);
 }
 
 .theme-toggle-reveal-btn:hover::after {
@@ -30,8 +30,9 @@
 }
 
 .theme-toggle-reveal-btn:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--ifm-color-primary) 85%, transparent);
-  outline-offset: 2px;
+  outline: 2px solid var(--site-focus-ring);
+  outline-offset: var(--site-focus-ring-offset);
+  box-shadow: var(--site-focus-shadow);
 }
 
 .theme-toggle-icon {
@@ -51,6 +52,79 @@
   color: var(--site-on-primary);
 }
 
+/* 全站统一 focus-visible：链接 / 按钮 / 可点击卡片 */
+:where(a, button, [role='button'], input, textarea, select):focus-visible {
+  outline: 2px solid var(--site-focus-ring);
+  outline-offset: var(--site-focus-ring-offset);
+}
+
+:where(.button, .navbar__link, .menu__link, .table-of-contents__link, .pagination-nav__link, .breadcrumbs__link):focus-visible {
+  box-shadow: var(--site-focus-shadow);
+}
+
+/* 轻微 hover/active 反馈（不干扰首页自定义按钮样式） */
+:where(.button):active {
+  transform: translateY(calc(var(--site-lift-1) * 1));
+}
+
+:where(a:not(.button)):focus-visible {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* 落地页兜底：即便全站处于浅色主题，落地页仍保持黑底亮字（避免路由切换时短暂黑字闪烁） */
+body.landing-ragflow-theme [data-landing-ragflow] {
+  background: #000;
+  color: rgba(245, 250, 248, 0.94);
+}
+
+body.landing-ragflow-theme [data-landing-ragflow] h1,
+body.landing-ragflow-theme [data-landing-ragflow] h2 {
+  color: rgba(245, 250, 248, 0.94);
+}
+
+body.landing-ragflow-theme [data-landing-ragflow] p {
+  color: rgba(180, 195, 190, 0.78);
+}
+
+.table-of-contents__link--active {
+  position: relative;
+}
+
+/* 目录当前项更明显：细边线 + 轻微辉光（现代文档站常见） */
+.table-of-contents__link--active::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  width: 2px;
+  height: 1.15em;
+  transform: translateY(-50%);
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--ifm-color-primary) 70%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--ifm-color-primary) 35%, transparent);
+}
+
+/* 上一页/下一页卡片更像可点击组件 */
+.pagination-nav__link {
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 18%, transparent);
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
+  transition:
+    transform var(--site-motion-fast) var(--site-ease-out),
+    box-shadow var(--site-motion-base) var(--site-ease-out),
+    border-color var(--site-motion-fast) var(--site-ease-out);
+}
+
+.pagination-nav__link:hover {
+  transform: translateY(calc(var(--site-lift-2) * -1));
+  border-color: color-mix(in srgb, var(--ifm-color-primary) 32%, transparent);
+  box-shadow: 0 16px 44px color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+}
+
+.pagination-nav__link:focus-visible {
+  box-shadow: 0 16px 44px color-mix(in srgb, var(--ifm-color-primary) 12%, transparent), var(--site-focus-shadow);
+}
 .button.button--secondary {
   background: color-mix(in srgb, var(--ifm-color-primary) 10%, var(--ifm-background-color));
   color: var(--ifm-font-color-base);

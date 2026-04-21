@@ -7,10 +7,10 @@ body,
 .step,
 .theme-doc-markdown {
   transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease;
+    background-color var(--site-motion-base) var(--site-ease-out),
+    color var(--site-motion-base) var(--site-ease-out),
+    border-color var(--site-motion-base) var(--site-ease-out),
+    box-shadow var(--site-motion-base) var(--site-ease-out);
 }
 
 @media (prefers-reduced-motion: reduce) {

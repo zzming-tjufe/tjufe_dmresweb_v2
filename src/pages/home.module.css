@@ -3,6 +3,8 @@
  */
 
 :global(:root) {
+  --home-cyber: #00d4b4;
+  --home-cyber-soft: rgba(0, 212, 180, 0.22);
   --home-hero-base-a: #f3ede6;
   --home-hero-base-b: #ebe3d8;
   --home-hero-base-c: #e4dcd1;
@@ -11,9 +13,12 @@
   --home-section-subtitle: var(--site-text-subtle);
   --home-card-bg: color-mix(in srgb, var(--ifm-background-surface-color) 92%, var(--ifm-color-primary) 8%);
   --home-card-border: color-mix(in srgb, var(--ifm-color-primary) 16%, transparent);
-  --home-card-border-hover: color-mix(in srgb, var(--ifm-color-primary) 28%, transparent);
-  --home-card-shadow: 0 7px 20px color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
-  --home-card-shadow-hover: 0 10px 26px color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+  --home-card-border-hover: color-mix(in srgb, var(--home-cyber) 48%, transparent);
+  --home-card-shadow: 0 10px 28px color-mix(in srgb, var(--ifm-color-primary) 10%, transparent);
+  --home-card-shadow-hover:
+    0 16px 44px color-mix(in srgb, var(--ifm-color-primary) 12%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--home-cyber) 26%, transparent),
+    0 0 26px color-mix(in srgb, var(--home-cyber) 18%, transparent);
   --home-card-desc: color-mix(in srgb, var(--ifm-font-color-base) 92%, var(--ifm-color-primary) 8%);
   --home-card-title: var(--ifm-heading-color);
   --home-tag-color: var(--site-link-visited-color);
@@ -21,7 +26,9 @@
   --home-tag-border: color-mix(in srgb, var(--ifm-color-primary) 22%, transparent);
   --home-step-bg: color-mix(in srgb, var(--ifm-background-surface-color) 94%, var(--ifm-color-primary) 6%);
   --home-step-border: color-mix(in srgb, var(--ifm-color-primary) 14%, transparent);
-  --home-step-shadow: 0 6px 16px color-mix(in srgb, var(--ifm-color-primary) 6%, transparent);
+  --home-step-shadow:
+    0 12px 34px color-mix(in srgb, var(--ifm-color-primary) 8%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--home-cyber) 18%, transparent);
   --home-step-note: var(--site-text-muted);
   --home-accent: var(--ifm-color-primary-dark);
   --home-step-badge-bg: var(--ifm-color-primary);
@@ -30,14 +37,18 @@
 }
 
 :global([data-theme='dark']) {
+  --home-cyber-soft: rgba(0, 212, 180, 0.26);
   --home-hero-base-a: #2c2621;
   --home-hero-base-b: #1f1c19;
   --home-hero-base-c: #171512;
   --home-card-bg: color-mix(in srgb, var(--ifm-background-surface-color) 85%, var(--ifm-color-primary) 15%);
   --home-card-border: color-mix(in srgb, var(--ifm-color-primary) 24%, transparent);
-  --home-card-border-hover: color-mix(in srgb, var(--ifm-color-primary) 42%, transparent);
+  --home-card-border-hover: color-mix(in srgb, var(--home-cyber) 58%, transparent);
   --home-card-shadow: 0 10px 24px color-mix(in srgb, #000 38%, transparent);
-  --home-card-shadow-hover: 0 12px 30px color-mix(in srgb, #000 50%, transparent);
+  --home-card-shadow-hover:
+    0 18px 46px color-mix(in srgb, #000 60%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--home-cyber) 28%, transparent),
+    0 0 34px color-mix(in srgb, var(--home-cyber) 16%, transparent);
   --home-card-desc: color-mix(in srgb, var(--ifm-font-color-base) 94%, var(--ifm-color-primary) 6%);
   --home-card-title: var(--ifm-heading-color);
   --home-tag-color: color-mix(in srgb, var(--ifm-font-color-base) 92%, var(--ifm-color-primary) 8%);
@@ -45,7 +56,9 @@
   --home-tag-border: color-mix(in srgb, var(--ifm-color-primary) 40%, transparent);
   --home-step-bg: color-mix(in srgb, var(--ifm-background-surface-color) 88%, var(--ifm-color-primary) 12%);
   --home-step-border: color-mix(in srgb, var(--ifm-color-primary) 24%, transparent);
-  --home-step-shadow: 0 10px 24px color-mix(in srgb, #000 40%, transparent);
+  --home-step-shadow:
+    0 18px 46px color-mix(in srgb, #000 55%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--home-cyber) 22%, transparent);
   --home-accent: var(--ifm-color-primary-light);
   --home-step-badge-bg: var(--ifm-color-primary-dark);
 }
@@ -153,11 +166,17 @@
   padding: 1.1rem 1.1rem 1rem;
   border-radius: 14px;
   border: 1px solid var(--home-card-border);
-  background: var(--home-card-bg);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--home-cyber) 5%, transparent), transparent 46%),
+    var(--home-card-bg);
+  backdrop-filter: blur(10px);
   text-decoration: none !important;
   color: inherit !important;
   box-shadow: var(--home-card-shadow);
-  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+  transition:
+    transform var(--site-motion-fast) var(--site-ease-out),
+    box-shadow var(--site-motion-base) var(--site-ease-out),
+    border-color var(--site-motion-fast) var(--site-ease-out);
 }
 
 .card:link,
@@ -177,6 +196,10 @@
   border-color: var(--home-card-border-hover);
   box-shadow: var(--home-card-shadow-hover);
   text-decoration: none !important;
+}
+
+.card:focus-visible {
+  box-shadow: var(--home-card-shadow-hover), var(--site-focus-shadow);
 }
 
 .cardHeader {
@@ -218,8 +241,8 @@
   border-radius: 999px;
   font-size: 0.78rem;
   color: var(--home-tag-color);
-  background: var(--home-tag-bg);
-  border: 1px solid var(--home-tag-border);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--home-cyber) 16%, transparent), var(--home-tag-bg));
+  border: 1px solid color-mix(in srgb, var(--home-cyber) 22%, var(--home-tag-border));
 }
 
 .cardDesc {
@@ -253,10 +276,10 @@
   box-shadow: var(--home-step-shadow);
   text-decoration: none !important;
   transition:
-    transform 140ms ease,
-    box-shadow 140ms ease,
-    border-color 140ms ease,
-    background-color 140ms ease;
+    transform var(--site-motion-fast) var(--site-ease-out),
+    box-shadow var(--site-motion-base) var(--site-ease-out),
+    border-color var(--site-motion-fast) var(--site-ease-out),
+    background-color var(--site-motion-base) var(--site-ease-out);
 }
 
 .step:hover,
@@ -269,6 +292,10 @@
   box-shadow: var(--home-card-shadow-hover);
 }
 
+.step:focus-visible {
+  box-shadow: var(--home-card-shadow-hover), var(--site-focus-shadow);
+}
+
 .stepBadge {
   width: 32px;
   height: 32px;
@@ -276,7 +303,10 @@
   display: grid;
   place-items: center;
   color: var(--site-on-primary);
-  background: var(--home-step-badge-bg);
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--home-cyber) 55%, transparent), transparent 62%),
+    var(--home-step-badge-bg);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--home-cyber) 26%, transparent), 0 0 18px var(--home-cyber-soft);
   font-weight: 700;
   flex: 0 0 32px;
 }

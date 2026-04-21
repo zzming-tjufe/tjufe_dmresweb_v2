@@ -34,8 +34,8 @@ const TRAIL_Y_NEG =
 function applyLightStyles(trailEl, starWrap, xPx, yPx, vx, vy, legStartX, legStartY) {
   if (!starWrap) return;
 
-  starWrap.style.left = `${xPx}px`;
-  starWrap.style.top = `${yPx}px`;
+  // 用 transform 代替 left/top，避免触发布局重排导致卡顿
+  starWrap.style.transform = `translate3d(${xPx}px, ${yPx}px, 0) translate(-50%, -50%)`;
 
   if (!trailEl) return;
 
@@ -101,13 +101,7 @@ export default function LandingPage() {
   const starWrapRef = useRef(null);
   const cycleRef = useRef(0);
 
-  useEffect(() => {
-    // 仅做首页专属外观类，不直接改全站 data-theme，避免与 Docusaurus 主题机制冲突。
-    document.body.classList.add('landing-ragflow-theme');
-    return () => {
-      document.body.classList.remove('landing-ragflow-theme');
-    };
-  }, []);
+  // landing-ragflow-theme 由全局 Layout 根据路由统一控制，避免串台。
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -119,6 +113,16 @@ export default function LandingPage() {
       typeof window !== 'undefined' &&
       window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 低性能降级：降低帧率/速度（更顺滑、更省电）
+    const lowPerf =
+      reduceMotion ||
+      (typeof navigator !== 'undefined' && navigator.connection && navigator.connection.saveData) ||
+      (typeof navigator !== 'undefined' && navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+      (typeof navigator !== 'undefined' && navigator.deviceMemory && navigator.deviceMemory <= 4);
+    if (lowPerf) {
+      hero.setAttribute('data-lowperf', 'true');
+    }
 
     if (reduceMotion) {
       const r = hero.getBoundingClientRect();
@@ -136,7 +140,8 @@ export default function LandingPage() {
     let maxIy = 1;
     let xPx = 0;
     let yPx = 0;
-    let vx = MOVE_SPEED;
+    const speed = lowPerf ? MOVE_SPEED * 0.72 : MOVE_SPEED;
+    let vx = speed;
     let vy = 0;
     let legStartX = 0;
     let legStartY = 0;
@@ -173,7 +178,7 @@ export default function LandingPage() {
         lockedY = Math.min(iy * GRID_CELL, maxGridY, h);
         xPx = 0;
         yPx = lockedY;
-        vx = MOVE_SPEED;
+        vx = speed;
         vy = 0;
       } else if (edge === 1) {
         const ix = centerIx;
@@ -181,13 +186,13 @@ export default function LandingPage() {
         xPx = lockedX;
         yPx = 0;
         vx = 0;
-        vy = MOVE_SPEED;
+        vy = speed;
       } else if (edge === 2) {
         const iy = centerIy;
         lockedY = Math.min(iy * GRID_CELL, maxGridY, h);
         xPx = Math.min(maxGridX, w);
         yPx = lockedY;
-        vx = -MOVE_SPEED;
+        vx = -speed;
         vy = 0;
       } else {
         const ix = centerIx;
@@ -195,7 +200,7 @@ export default function LandingPage() {
         xPx = lockedX;
         yPx = Math.min(maxGridY, h);
         vx = 0;
-        vy = -MOVE_SPEED;
+        vy = -speed;
       }
 
       legStartX = xPx;
@@ -205,7 +210,9 @@ export default function LandingPage() {
 
     function tick(now) {
       if (cancelled) return;
-      const dt = Math.min(0.032, Math.max(0, (now - lastT) / 1000));
+      // 低性能降级：限制到 ~45fps，避免无意义的高频更新
+      const maxDt = lowPerf ? 0.045 : 0.032;
+      const dt = Math.min(maxDt, Math.max(0, (now - lastT) / 1000));
       lastT = now;
 
       if (exiting) {

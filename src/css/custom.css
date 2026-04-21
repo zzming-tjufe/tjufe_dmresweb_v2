@@ -1,3 +1,6 @@
+@import "@fontsource/inter/latin.css";
+@import "@fontsource/noto-sans-sc/latin.css";
+@import "@fontsource/noto-sans-sc/chinese-simplified.css";
 @import "./theme/tokens.css";
 @import "./theme/links.css";
 @import "./theme/motion.css";
