@@ -19,8 +19,8 @@ const config = {
     v4: true,
   },
 
-  url: 'https://mrdino-0611.github.io',
-  baseUrl: '/tjufe_dmres_web_v2/',
+  url: 'https://zzming-tjufe.github.io',
+  baseUrl: '/tjufe_dmresweb_v2/',
 
   organizationName: 'zzming-tjufe',
   projectName: 'tjufe_dmresweb_v2',
