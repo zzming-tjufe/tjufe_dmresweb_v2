@@ -48,7 +48,7 @@
 
 对应实现位置：`src/css/theme/components.css`
 
-## 5. 动效节奏与降级策略
+## 5. 动效节奏与降级策略（统一实现）
 
 全站统一动效时长与缓动：
 
@@ -60,6 +60,12 @@
 - **`prefers-reduced-motion: reduce`**：页面仍完整可读，动效应降级为静态或低负载表现。
 - **低性能设备**（如开启省流量、低内存/低核心数）：优先关闭 `mask`、弱化 `blur`、减少拖尾/高频动画。
 
+当前实现位置：
+
+- `src/theme/Layout/index.js`：主题切换动效在 `reduced-motion` 下直接降级为无动画
+- `src/landing/motion.js`：`detectLowPerf()` 统一判断低性能设备
+- `src/pages/landing.module.css`：`[data-lowperf='true']` 与 `@media (prefers-reduced-motion: reduce)` 下进行视觉降级
+
 ## 6. 断点与布局（Landing 特例）
 
 落地页采用“状态化布局”而非碎片化覆盖：
@@ -69,3 +75,15 @@
 - **split-wide**：真正大屏
 
 对应实现位置：`src/pages/landing.module.css`
+
+## 7. 首页主题隔离（不可破坏规则）
+
+为避免“首页深色样式串到文档页”，必须同时满足：
+
+- 路由层通过 `src/theme/Layout/index.js` 维护 `body.landing-ragflow-theme`
+- 首页根容器保留 `data-landing-ragflow` 属性
+
+禁止做法：
+
+- 直接在首页组件里全局写 `document.documentElement.setAttribute('data-theme', ...)`
+- 删除上述 class/data 约定中的任一侧而不做替代方案

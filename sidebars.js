@@ -9,6 +9,8 @@ const sidebars = {
       label: '数字时代开源工具实践',
       link: {type: 'doc', id: 'guide/lesson/opensourcetools'},
       items: [
+        'guide/getting-started',
+        'guide/module-template',
         'guide/basic/powershell',
         'guide/development/vscode',
         'guide/development/docker',
@@ -44,10 +46,21 @@ const sidebars = {
       label: '关于与贡献',
       items: [
         'about/dm2501jjm',
+        'about/feedback-workflow',
+        'about/resource-trust-template',
         'about/record',
         'about/mdx-migration-guide',
         'about/ui-style-guide',
-        'about/viewport-regression-matrix',
+      ],
+    },
+    {
+      type: 'category',
+      label: '更新与发布',
+      items: [
+        'updates/changelog',
+        'updates/release-checklist',
+        'updates/screenshot-baseline',
+        'updates/viewport-regression-matrix',
       ],
     },
   ],

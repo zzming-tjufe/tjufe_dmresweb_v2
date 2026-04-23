@@ -3,8 +3,9 @@
  */
 
 :global(:root) {
-  --home-cyber: #00d4b4;
-  --home-cyber-soft: rgba(0, 212, 180, 0.22);
+  /* 跟随全站主色，避免出现偏绿高光 */
+  --home-cyber: var(--ifm-color-primary);
+  --home-cyber-soft: color-mix(in srgb, var(--ifm-color-primary) 24%, transparent);
   --home-hero-base-a: #f3ede6;
   --home-hero-base-b: #ebe3d8;
   --home-hero-base-c: #e4dcd1;
@@ -37,7 +38,7 @@
 }
 
 :global([data-theme='dark']) {
-  --home-cyber-soft: rgba(0, 212, 180, 0.26);
+  --home-cyber-soft: color-mix(in srgb, var(--ifm-color-primary) 28%, transparent);
   --home-hero-base-a: #2c2621;
   --home-hero-base-b: #1f1c19;
   --home-hero-base-c: #171512;

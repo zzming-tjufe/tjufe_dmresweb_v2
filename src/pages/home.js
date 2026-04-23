@@ -68,27 +68,27 @@ function ModuleCard({title, description, to, tags}) {
 const quickStart = [
   {
     step: '1',
-    title: '先读导航页',
-    to: '/docs',
-    note: '从总览了解模块结构与入口。',
+    title: '三步上手（推荐）',
+    to: '/docs/guide/getting-started',
+    note: '从 0 到能用：先把环境与方法论跑通。',
   },
   {
     step: '2',
-    title: '学会写 Markdown',
-    to: '/docs/guide/basic/markdown',
-    note: '后续自己补充内容会更顺手。',
+    title: '总览（按模块进入）',
+    to: '/docs',
+    note: '按主题快速定位你要学的内容。',
   },
   {
     step: '3',
-    title: '配置编程环境',
-    to: '/docs/guide/basic/envs',
-    note: '把基础环境搭好，再做工具与课程实践。',
+    title: '学会写 Markdown',
+    to: '/docs/guide/basic/markdown',
+    note: '后续自己补充与整理会更顺手。',
   },
   {
     step: '4',
-    title: '掌握 Git（强烈推荐）',
-    to: '/docs/guide/development/git',
-    note: '方便协作、提交与回退，也是迁移过程的保障。',
+    title: '配置编程环境',
+    to: '/docs/guide/basic/envs',
+    note: '把基础环境搭好，再做工具与课程实践。',
   },
 ];
 
@@ -167,10 +167,15 @@ export default function HomeNavPage() {
         )}
         <div className={clsx('container', styles.heroContainer)}>
           <h1 className={styles.heroTitle}>天财数管资源站</h1>
-          <p className={styles.heroSubtitle}>专为新生打造的学习资源导航站。</p>
+          <p className={styles.heroSubtitle}>
+            面向新生与进阶学习者的开源工具、生成式 AI、网络与方法论导航。先从三步上手开始，再按模块深入。
+          </p>
           <div className={styles.heroButtons}>
             <Link className={clsx('button button--lg', styles.heroPrimaryBtn)} to="/docs">
               开始阅读
+            </Link>
+            <Link className={clsx('button button--lg', styles.heroSecondaryBtn)} to="/docs/guide/getting-started">
+              三步上手
             </Link>
             <Link className={clsx('button button--lg', styles.heroSecondaryBtn)} to="/docs/about/mdx-migration-guide">
               迁移与插图规范
