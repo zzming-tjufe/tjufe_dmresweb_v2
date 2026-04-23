@@ -20,7 +20,7 @@ const config = {
   },
 
   url: 'https://mrdino-0611.github.io',
-  baseUrl: '/tjufe_dmres_web/',
+  baseUrl: '/tjufe_dmres_web_v2/',
 
   organizationName: 'zzming-tjufe',
   projectName: 'tjufe_dmresweb_v2',
