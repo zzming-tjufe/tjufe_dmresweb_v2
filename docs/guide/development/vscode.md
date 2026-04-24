@@ -3,14 +3,15 @@ title: "Visual Studio Code 安装指南"
 description: "VS Code 官方渠道安装、中文界面与常用扩展推荐，避免误装第三方打包版本。"
 sidebar_position: 2
 ---
-
-# Visual Studio Code 安装指南
+# <img src="../../../images/vscode-图标.png" width="10%" alt="VS Code Logo" /> Visual Studio Code 安装指南
 
 ## 下载
 
 - 推荐从 [Visual Studio Code 官网](https://code.visualstudio.com/) 下载 Windows / macOS / Linux 安装包。  
 - Windows 也可在 **Microsoft Store** 搜索「Visual Studio Code」安装（发布者为 Microsoft）。  
-- **不要在电脑品牌自带的应用商店**（如部分机型的「联想应用商店」等）里安装来源不明的「魔改版」或旧版本，以免捆绑插件与安全隐患。
+- **不要在电脑品牌自带的应用商店**（如部分机型的「联想应用商店」等）里安装来源不明的「魔改版」或旧版本，以免捆绑插件与安全隐患。  
+如图：  
+！[vscode](../../../images/vscode-界面.png)
 
 ## 配置
 

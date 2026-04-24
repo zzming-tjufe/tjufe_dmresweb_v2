@@ -11,7 +11,7 @@ sidebar_position: 5
 ---
 
 
-## 1. 什么是 Anaconda？
+## 1. 什么是 Anaconda？<img src="../../../images/anaconda-图标.png" width="10%" alt="VS Code Logo" />
 
 **Anaconda** 是一个开源的 Python 和 R 语言的发行版，专为数据科学、机器学习、大数据处理等任务设计。它包含：
 
@@ -20,7 +20,9 @@ sidebar_position: 5
 - **Conda**：一个强大的包管理器和环境管理器
 - **Anaconda Navigator**：图形化界面，方便管理环境和启动应用（如 Jupyter Notebook）
 
-> 💡 对于初学者，Anaconda 能帮你避免“依赖地狱”——不用手动安装各种库和解决版本冲突！
+> 💡 对于初学者，Anaconda 能帮你避免“依赖地狱”——不用手动安装各种库和解决版本冲突！  
+如图：  
+![anaconda](../../../images/anaconda-界面.png)
 
 ---
 

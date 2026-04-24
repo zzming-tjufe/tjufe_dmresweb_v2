@@ -10,7 +10,7 @@ sidebar_position: 4
 
 ---
 
-## 一、Git 是什么？
+## 一、Git 是什么？<img src="../../../images/git.png" width="10%" alt="VS Code Logo" />
 
 Git 是一个**分布式版本控制系统**，用于跟踪文件的修改历史，尤其适用于代码管理。它可以帮助你：
 
