@@ -1,0 +1,138 @@
+name: GitHub Models Issue Bot
+
+on:
+  issues:
+    types: [opened]
+permissions:
+  issues: write
+  contents: read
+  models: read
+
+jobs:
+  issue-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Review issue with GitHub Models
+        uses: actions/github-script@v7
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const { owner, repo } = context.repo;
+            const issue_number = issue.number;
+            const marker = "<!-- github-models-issue-bot -->";
+
+            const title = issue.title || "";
+            const body = issue.body || "";
+
+            const prompt = `
+            你是一个 GitHub 仓库维护助手。
+
+            请审核下面这个 Issue / Feature Request。
+
+            任务：
+            1. 判断分类：bug、feature request、question、documentation、incomplete。
+            2. 检查信息是否完整。
+            3. 如果是 bug，检查是否缺少：版本、环境、复现步骤、实际结果、期望结果、截图/日志。
+            4. 如果是 feature request，检查是否说明：问题背景、想要的功能、使用场景、可能实现方式。
+            5. 给出建议标签。
+            6. 用简洁中文回复。
+            7. 不要直接要求关闭 Issue，除非它明显无效。
+            8. 不要声称已经验证代码，只能基于 Issue 内容判断。
+
+            输出格式：
+
+            ## AI 自动审核
+
+            ### 分类
+            ...
+
+            ### 摘要
+            ...
+
+            ### 完整性检查
+            ...
+
+            ### 缺失信息
+            ...
+
+            ### 建议标签
+            - ...
+
+            ### 维护者建议
+            ...
+
+            Issue 标题：
+            ${title}
+
+            Issue 内容：
+            ${body}
+            `;
+
+            const response = await fetch("https://models.github.ai/inference/chat/completions", {
+              method: "POST",
+              headers: {
+                "Authorization": `Bearer ${process.env.GITHUB_TOKEN}`,
+                "Content-Type": "application/json",
+                "Accept": "application/vnd.github+json",
+                "X-GitHub-Api-Version": "2022-11-28"
+              },
+              body: JSON.stringify({
+                model: "openai/gpt-4.1",
+                messages: [
+                  {
+                    role: "system",
+                    content: "你是一个严谨、简洁的 GitHub Issue 审核机器人。"
+                  },
+                  {
+                    role: "user",
+                    content: prompt
+                  }
+                ],
+                temperature: 0.2
+              })
+            });
+
+            if (!response.ok) {
+              const errorText = await response.text();
+              throw new Error(`GitHub Models error: ${response.status} ${errorText}`);
+            }
+
+            const data = await response.json();
+            const text = data.choices?.[0]?.message?.content || "模型没有返回有效内容。";
+
+            const commentBody = `${marker}
+
+            ${text}
+
+            ---
+            _由 GitHub Models Issue Bot 自动生成。_`;
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+              per_page: 100
+            });
+
+            const oldComment = comments.find(comment =>
+              comment.body && comment.body.includes(marker)
+            );
+
+            if (oldComment) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: oldComment.id,
+                body: commentBody
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body: commentBody
+              });
+            }
