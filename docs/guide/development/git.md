@@ -9,8 +9,9 @@ sidebar_position: 4
 欢迎来到 Git 的世界！本指南将帮助你从零开始掌握 Git 的基本使用，包括在三大主流操作系统（Windows、macOS、Linux）上安装 Git，以及常用命令的详解。无论你是计算机专业新生，还是对编程感兴趣的初学者，这份指南都将为你打下坚实的基础。
 
 ---
+<img src="../../../static/img/examples/git.png" width="80">   
 
-## 一、Git 是什么？<img src="../../../images/git.png" width="10%" alt="VS Code Logo" />
+## 一、Git 是什么？
 
 Git 是一个**分布式版本控制系统**，用于跟踪文件的修改历史，尤其适用于代码管理。它可以帮助你：
 

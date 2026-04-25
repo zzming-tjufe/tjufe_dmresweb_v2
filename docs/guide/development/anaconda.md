@@ -9,9 +9,9 @@ sidebar_position: 5
 > 本指南专为刚接触编程和数据科学的大一新生设计，手把手教你安装、配置和使用 Anaconda —— 一个强大的 Python 数据科学平台。
 
 ---
+<img src="../../../static/img/examples/anaconda-logo.png" width="80">  
 
-
-## 1. 什么是 Anaconda？<img src="../../../images/anaconda-图标.png" width="10%" alt="VS Code Logo" />
+## 1. 什么是 Anaconda？
 
 **Anaconda** 是一个开源的 Python 和 R 语言的发行版，专为数据科学、机器学习、大数据处理等任务设计。它包含：
 
@@ -20,9 +20,10 @@ sidebar_position: 5
 - **Conda**：一个强大的包管理器和环境管理器
 - **Anaconda Navigator**：图形化界面，方便管理环境和启动应用（如 Jupyter Notebook）
 
-> 💡 对于初学者，Anaconda 能帮你避免“依赖地狱”——不用手动安装各种库和解决版本冲突！  
+> 💡 对于初学者，Anaconda 能帮你避免“依赖地狱”——不用手动安装各种库和解决版本冲突！    
+
 如图：  
-![anaconda](../../../images/anaconda-界面.png)
+![anaconda](/static/img/examples/anaconda.png)
 
 ---
 

@@ -3,10 +3,9 @@ title: "PowerShell 基础使用指南"
 description: "Windows 终端入门：常用别名、目录与文件操作，以及进程、服务、管道与帮助命令。"
 sidebar_position: 1
 ---
+# PowerShell 基础使用指南 
 
-# PowerShell 基础使用指南 <img src="../../../images/vscode-图标.png" width="10%" alt="VS Code Logo" />
-
----
+---  
 
 ## 1. 打开 PowerShell
 
@@ -15,7 +14,7 @@ sidebar_position: 1
 - 或在开始菜单搜索 “PowerShell” 并打开。  
   
   如图：  
-  ![PowerShell](../../../images/PowerShell.png)
+  ![PowerShell](/static/img/examples/PowerShell.png)
 
 
 ---

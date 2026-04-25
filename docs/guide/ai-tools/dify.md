@@ -36,7 +36,7 @@ Dify 的核心优势：
   - **Workflow**：复杂逻辑编排（推荐进阶使用）
 - 输入应用名称（如 “新生问答助手”），点击 **创建 / Create**  
 如图：  
-![dify](../../../images/dify.png)
+![dify](/static/img/examples/dify.png)
 
 ### 3. 配置模型与 Prompt
 - 在 **提示词编排 / Prompt** 相关页面，编写系统提示词（System Prompt），例如：
