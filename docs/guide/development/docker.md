@@ -7,7 +7,7 @@ sidebar_position: 3
 # Docker Desktop 安装与配置指南   
 > 本指南适用于 Windows 系统。    
 
-<img src={require('../../../static/img/examples/docker-logo.png').default} width="80"/>  
+<img src={require('../../../static/img/examples/docker-logo.webp').default} width="80"/>  
 
 
 ## 核心概念
@@ -26,7 +26,7 @@ docker run hello-world
 ```
 如果看到欢迎信息，表明 Docker 已正确安装并运行。  
 如图：  
-![docker](/img/examples/docker.png)
+![docker](/img/examples/docker.webp)
 
 ## 常用命令速查
 

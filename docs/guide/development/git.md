@@ -9,7 +9,7 @@ sidebar_position: 4
 欢迎来到 Git 的世界！本指南将帮助你从零开始掌握 Git 的基本使用，包括在三大主流操作系统（Windows、macOS、Linux）上安装 Git，以及常用命令的详解。无论你是计算机专业新生，还是对编程感兴趣的初学者，这份指南都将为你打下坚实的基础。
 
 ---
-<img src={require('../../../static/img/examples/git.png').default} width="80"/>  
+<img src={require('../../../static/img/examples/git.webp').default} width="80"/>  
 
 
 ## 一、Git 是什么？
