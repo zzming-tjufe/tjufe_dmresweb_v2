@@ -9,7 +9,7 @@ sidebar_position: 1
 
 模块导读见：[科学上网](../lesson/scienceweb)。    
 
-<img src="../../../static/img/examples/clash-verge-logo.png" width="80">
+<img src={require('../../../static/img/examples/clash-verge-logo.png').default} width="80"/>  
 
 ## 软件简介
 
@@ -46,7 +46,7 @@ Get-FileHash -Path "你下载的安装包完整路径\文件名.exe" -Algorithm 
 3. 在界面中选择节点、按需开启**系统代理**或**规则模式**（以软件文案为准）。    
 
 如图：  
-![clash-verge](/static/img/examples/clash-verge.png)
+![clash-verge](/img/examples/clash-verge.png)
 
 ## 注意事项与风险
 

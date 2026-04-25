@@ -14,7 +14,7 @@ sidebar_position: 1
 - 或在开始菜单搜索 “PowerShell” 并打开。  
   
   如图：  
-  ![PowerShell](/static/img/examples/PowerShell.png)
+  ![PowerShell](/img/examples/PowerShell.png)
 
 
 ---

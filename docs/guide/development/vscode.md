@@ -5,7 +5,8 @@ sidebar_position: 2
 ---
 # Visual Studio Code 安装指南
   
-<img src="../../../static/img/examples/vscode-logo.png" width="80">  
+<img src={require('../../../static/img/examples/vscode-logo.png').default} width="80"/>  
+
 
 ## 下载
 
@@ -14,7 +15,7 @@ sidebar_position: 2
 - **不要在电脑品牌自带的应用商店**（如部分机型的「联想应用商店」等）里安装来源不明的「魔改版」或旧版本，以免捆绑插件与安全隐患。    
 
   如图：  
-![vscode](/static/img/examples/vscode.png)
+![vscode](/img/examples/vscode.png)
 
 ## 配置
 

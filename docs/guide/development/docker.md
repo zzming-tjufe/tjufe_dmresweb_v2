@@ -7,7 +7,8 @@ sidebar_position: 3
 # Docker Desktop 安装与配置指南   
 > 本指南适用于 Windows 系统。    
 
-<img src="../../../static/img/examples/docker-logo.png" width="80">  
+<img src={require('../../../static/img/examples/docker-logo.png').default} width="80"/>  
+
 
 ## 核心概念
 Docker 是一个用于开发、发布和运行应用程序的开放平台。它能将应用与依赖环境打包成容器，实现**一次构建，处处运行**。
@@ -25,7 +26,7 @@ docker run hello-world
 ```
 如果看到欢迎信息，表明 Docker 已正确安装并运行。  
 如图：  
-![docker](/static/img/examples/docker.png)
+![docker](/img/examples/docker.png)
 
 ## 常用命令速查
 
