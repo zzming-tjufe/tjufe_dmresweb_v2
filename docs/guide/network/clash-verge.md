@@ -4,11 +4,12 @@ description: "从可信渠道获取客户端、校验安装包哈希、导入配
 sidebar_position: 1
 ---
 
-# Clash Verge 使用指南
-
+# Clash Verge 使用指南 
 > 本指南旨在介绍网络调试类工具的安装与基本使用，请确保你了解并遵守所在地法律法规及学校网络使用规定。
 
-模块导读见：[科学上网](../lesson/scienceweb)。
+模块导读见：[科学上网](../lesson/scienceweb)。    
+
+<img src={require('../../../static/img/examples/clash-verge-logo.png').default} width="80"/>  
 
 ## 软件简介
 
@@ -42,7 +43,10 @@ Get-FileHash -Path "你下载的安装包完整路径\文件名.exe" -Algorithm 
 
 1. 准备或获取符合 Clash 语法的配置文件（常见为 `.yaml` / 订阅链接，**来源须可信**）。
 2. 在客户端中**导入**配置或订阅。
-3. 在界面中选择节点、按需开启**系统代理**或**规则模式**（以软件文案为准）。
+3. 在界面中选择节点、按需开启**系统代理**或**规则模式**（以软件文案为准）。    
+
+如图：  
+![clash-verge](/img/examples/clash-verge.png)
 
 ## 注意事项与风险
 

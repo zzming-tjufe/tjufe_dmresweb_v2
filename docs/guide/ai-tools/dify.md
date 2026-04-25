@@ -34,7 +34,9 @@ Dify 的核心优势：
   - **Chatbot**：对话式 AI（如客服机器人）
   - **Agent**：具备工具调用能力的智能体
   - **Workflow**：复杂逻辑编排（推荐进阶使用）
-- 输入应用名称（如 “新生问答助手”），点击 **创建 / Create**
+- 输入应用名称（如 “新生问答助手”），点击 **创建 / Create**  
+如图：  
+![dify](/img/examples/dify.png)
 
 ### 3. 配置模型与 Prompt
 - 在 **提示词编排 / Prompt** 相关页面，编写系统提示词（System Prompt），例如：

@@ -3,16 +3,19 @@ title: "PowerShell 基础使用指南"
 description: "Windows 终端入门：常用别名、目录与文件操作，以及进程、服务、管道与帮助命令。"
 sidebar_position: 1
 ---
+# PowerShell 基础使用指南 
 
-# PowerShell 基础使用指南
-
----
+---  
 
 ## 1. 打开 PowerShell
 
 - 按 `Win + R`，输入 `powershell`，回车。
 - 按 `Win + X`，选择 `终端`。
-- 或在开始菜单搜索 “PowerShell” 并打开。
+- 或在开始菜单搜索 “PowerShell” 并打开。  
+  
+  如图：  
+  ![PowerShell](/img/examples/PowerShell.png)
+
 
 ---
 
