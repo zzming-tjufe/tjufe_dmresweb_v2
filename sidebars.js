@@ -59,6 +59,7 @@ const sidebars = {
       items: [
         'updates/changelog',
         'updates/release-checklist',
+        'updates/image-guidelines',
         'updates/screenshot-baseline',
         'updates/viewport-regression-matrix',
       ],

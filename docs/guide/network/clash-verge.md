@@ -2,14 +2,14 @@
 title: "Clash Verge 使用指南"
 description: "从可信渠道获取客户端、校验安装包哈希、导入配置与合规使用；附推荐继任项目链接。"
 sidebar_position: 1
+titleIcon: /img/examples/clash-verge-logo.webp
+titleIconAlt: Clash Verge 标志
 ---
 
-# Clash Verge 使用指南 
+ 
 > 本指南旨在介绍网络调试类工具的安装与基本使用，请确保你了解并遵守所在地法律法规及学校网络使用规定。
 
-模块导读见：[科学上网](../lesson/scienceweb)。    
-
-<img src={require('../../../static/img/examples/clash-verge-logo.webp').default} width="80"/>  
+模块导读见：[科学上网](../lesson/scienceweb)。
 
 ## 软件简介
 
@@ -46,7 +46,7 @@ Get-FileHash -Path "你下载的安装包完整路径\文件名.exe" -Algorithm 
 3. 在界面中选择节点、按需开启**系统代理**或**规则模式**（以软件文案为准）。    
 
 如图：  
-![clash-verge](/img/examples/clash-verge.webp)
+![Clash Verge 界面示例](/img/examples/clash-verge.webp)
 
 ## 注意事项与风险
 

@@ -4,8 +4,6 @@ description: "Dify 云空间与 Docker 本地部署入门：环境变量、Compo
 sidebar_position: 2
 ---
 
-# Dify 新手入门指南（面向大一新生）
-
 > 本指南旨在帮助刚接触人工智能与低代码开发的大一新生快速上手 **Dify** —— 一个开源的 LLM 应用开发平台。你将学习如何使用网页版 Dify、本地部署 Dify，并掌握其核心概念和节点使用方法。
 
 ---
@@ -36,7 +34,7 @@ Dify 的核心优势：
   - **Workflow**：复杂逻辑编排（推荐进阶使用）
 - 输入应用名称（如 “新生问答助手”），点击 **创建 / Create**  
 如图：  
-![dify](/img/examples/dify.webp)
+![Dify 创建应用界面示例](/img/examples/dify.webp)
 
 ### 3. 配置模型与 Prompt
 - 在 **提示词编排 / Prompt** 相关页面，编写系统提示词（System Prompt），例如：

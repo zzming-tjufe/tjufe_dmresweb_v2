@@ -80,7 +80,7 @@ const config = {
   ],
 
   themeConfig: {
-    image: 'img/examples/校徽.jpg',
+    image: 'img/examples/tjufe-emblem-384.webp',
     metadata: [
       {name: 'description', content: '天财数管资源站：面向新生与进阶学习者的文档资源站。'},
       {property: 'og:type', content: 'website'},
@@ -100,7 +100,7 @@ const config = {
       title: '天财数管资源站',
       logo: {
         alt: '天津财经大学校徽',
-        src: 'img/examples/校徽.jpg',
+        src: 'img/examples/tjufe-emblem-384.webp',
       },
       items: [
         {

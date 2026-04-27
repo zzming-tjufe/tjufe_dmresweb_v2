@@ -136,3 +136,48 @@ body.landing-ragflow-theme [data-landing-ragflow] p {
   color: var(--ifm-font-color-base);
   border-color: color-mix(in srgb, var(--ifm-color-primary) 42%, transparent);
 }
+
+/* Doc title icon (tools pages): small icon before H1 */
+.doc-title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.doc-title-with-icon-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.doc-title-with-icon-wrap .doc-title-with-icon-title {
+  min-width: 0;
+}
+
+.doc-title-with-icon-wrap .doc-title-with-icon-title :where(h1, .theme-doc-markdown h1) {
+  margin: 0;
+  line-height: 1.15;
+}
+
+.doc-title-with-icon-wrap .doc-title-icon {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.doc-title-with-icon-wrap .doc-title-icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 10px;
+  transform: translateY(0.06em);
+}
+
+@media (max-width: 480px) {
+  .doc-title-with-icon-wrap .doc-title-icon img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+}

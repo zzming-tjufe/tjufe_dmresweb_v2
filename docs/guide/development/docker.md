@@ -2,13 +2,11 @@
 title: "Docker Desktop 安装与配置指南"
 description: "Windows 下 Docker Desktop 与 WSL2 安装要点、hello-world 验证及常用命令速查。"
 sidebar_position: 3
+titleIcon: /img/examples/docker-logo.webp
+titleIconAlt: Docker 标志
 ---
 
-# Docker Desktop 安装与配置指南   
-> 本指南适用于 Windows 系统。    
-
-<img src={require('../../../static/img/examples/docker-logo.webp').default} width="80"/>  
-
+> 本指南适用于 Windows 系统。
 
 ## 核心概念
 Docker 是一个用于开发、发布和运行应用程序的开放平台。它能将应用与依赖环境打包成容器，实现**一次构建，处处运行**。
@@ -26,7 +24,7 @@ docker run hello-world
 ```
 如果看到欢迎信息，表明 Docker 已正确安装并运行。  
 如图：  
-![docker](/img/examples/docker.webp)
+![Docker 运行验证示例](/img/examples/docker.webp)
 
 ## 常用命令速查
 
